@@ -24,7 +24,7 @@ class programmeRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|max:3',
+            'code' => 'required|string|max:3|unique',
             'name' => 'required|string|max:15',
         ];
     }
