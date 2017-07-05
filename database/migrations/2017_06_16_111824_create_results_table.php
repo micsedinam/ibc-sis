@@ -23,6 +23,7 @@ class CreateResultsTable extends Migration
             $table->string('exam_score');
             $table->string('total');
             $table->string('grade');
+            $table->integer('staffid');
             $table->timestamps();
         });
     }

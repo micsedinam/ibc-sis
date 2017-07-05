@@ -198,15 +198,10 @@ class resultsController extends Controller
         Excel::load(Input::file('results'),function ($reader){
             $reader -> each (function ($sheet){
                 Results::firstOrCreate($sheet -> toArray());
+                flash('Results uploaded successfully.') ->success();
             });
         });
-
-        if($sheet->save()){
-            flash('Results uploaded successfully.') ->success();
-        }else{
-            flash('Results not uploaded.') ->error();
-        }
-        
+            
 
         return redirect() ->back();
     }
