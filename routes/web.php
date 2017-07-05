@@ -78,6 +78,10 @@ Route::group(['prefix' => 'admin'], function() {
 
 	Route::resource('programme', 'programmeController');
 
+	//Route::get('grade-report', 'gradeReportController@index');
+	Route::get('grade-report', 'gradeReportController@subresults');
+	Route::post('report', 'gradeReportController@subresults');
+
 });
 
 

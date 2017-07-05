@@ -15,7 +15,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-6">
-        <a class="btn btn-primary" href="{{ route('parent.create') }}" > Manage Parents</a>
+        <a class="btn btn-primary" href="{{ route('parent.index') }}" > Manage Parents</a>
         <hr>
     </div>
 </div>
@@ -27,7 +27,7 @@
                 <h4 class="title text-center">Register Parent</h4>
             </div>
             <div class="content">
-                <form role="form" method="POST" action="{{ url('admin/parent') }}">
+                <form role="form" method="POST" action="{{ route('parent.create') }}">
 					{{ csrf_field() }}
 
                     <div class="row">
