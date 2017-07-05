@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SubjectsOptionals;
+use App\Programme;
 
 class optionalSubjectController extends Controller
 {
@@ -21,7 +22,11 @@ class optionalSubjectController extends Controller
     {
         $optional = SubjectsOptionals::select('subjectid', 'subject_title', 'class', 'programme')->get();
 
-        return view('admin.register-electives') ->with ($optional, 'optional');
+        $programme = Programme::select('name')
+                                ->groupBy('name')
+                                ->get();
+
+        return view('admin.register-electives') ->with ($optional, 'optional') ->with('programme', $programme);
     }
 
     /**

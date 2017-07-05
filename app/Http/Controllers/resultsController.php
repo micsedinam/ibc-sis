@@ -155,10 +155,10 @@ class resultsController extends Controller
 
         //dd($results);
         if ($results->update()){
-            flash($request['name'].' successfully saved.')->success();
-            echo 'saved';
+            flash('Results successfully saved.')->success();
+            //echo 'saved';
         }else{
-            flash($request['name'].' not saved.')->error();
+            flash('Results not saved.')->error();
             //echo 'Not saved';
         }
 
@@ -194,6 +194,13 @@ class resultsController extends Controller
                 Results::firstOrCreate($sheet -> toArray());
             });
         });
+
+        if($sheet->save()){
+            flash('Results uploaded successfully.') ->success();
+        }else{
+            flash('Results not uploaded.') ->error();
+        }
+        
 
         return redirect() ->back();
     }

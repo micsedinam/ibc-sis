@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Student;
 use App\User;
+use App\Programme;
 
 class studentregisterController extends Controller
 {
@@ -22,8 +23,12 @@ class studentregisterController extends Controller
     {
         $student = User::select('firstname', 'surname', 'othername','dob','gender','phone','address','email','programme','studentid', 'class')->get();
 
+        $programme = Programme::select('name')
+                                ->groupBy('name')
+                                ->get();
 
-        return view('admin.register-student')->with('student', $student);
+
+        return view('admin.register-student')->with('student', $student) ->with('programme', $programme);
     }
 
     /**

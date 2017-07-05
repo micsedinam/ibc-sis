@@ -45,9 +45,9 @@ class programmeController extends Controller
         //dd($programme);
 
         if($programme->save()){
-            flash($request['name']. 'Successfully Saved.')->success();
+            flash($request['name']. ' Successfully Saved.')->success();
         }else{
-            flash($request['name']. 'Not Saved.')->error();
+            flash($request['name']. ' Not Saved.')->error();
         }
 
         return redirect() ->back();
