@@ -63,11 +63,11 @@ class staffregisterController extends Controller
         //dd($staff);
 
         if ($staff->save()){
-          //  flash($request['name'].' successfully saved.')->success();
-            echo 'saved';
+            flash($request['name'].' successfully saved.')->success();
+            //echo 'saved';
         }else{
-            //  flash($request['name'].' not saved.')->error();
-            echo 'Not saved';
+              flash($request['name'].' not saved.')->error();
+            //echo 'Not saved';
         }
 
        return redirect()->back();

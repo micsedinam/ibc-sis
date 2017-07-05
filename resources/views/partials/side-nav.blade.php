@@ -43,12 +43,12 @@
                         <p>Results</p>
                     </a>
                 </li>
-                {{-- <li>
-                    <a href="{{url('admin/subjects')}}">
+                <li>
+                    <a href="{{url('admin/programme')}}">
                         <i class="ti-blackboard"></i>
-                        <p>Subjects</p>
+                        <p>Programmes</p>
                     </a>
-                </li> --}}
+                </li>
                 <li>
                     <a href="{{url('admin/add-admin')}}">
                         <i class="ti-pencil"></i>

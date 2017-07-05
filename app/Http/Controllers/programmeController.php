@@ -3,28 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Guardian;
+use App\Programme;
 
-class parentController extends Controller
+class programmeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
-
-
     public function index()
     {
-
-        $guardian = Guardian::select('firstname', 'surname', 'othername', 'dob', 'gender', 'phone', 'email', 'address')->get();
-
-
-        return view('admin.register-parent')->with('guardian', $guardian);
+        return view('admin.programme');
     }
 
     /**
@@ -45,29 +35,22 @@ class parentController extends Controller
      */
     public function store(Request $request)
     {
+
         //dd($request->all());
-        $parent = new Guardian();
+        $programme = new Programme();
 
-        $parent->firstname = $request['firstname'];
-        $parent->surname = $request['surname'];
-        $parent->othername = $request['othername'];
-        $parent->dob = $request['dob'];
-        $parent->gender = $request['gender'];
-        $parent->phone = $request['phone'];
-        $parent->email = $request['email'];
-        $parent->address = $request['address'];
-        $parent->group = ('Guardian');
-        $parent->password = bcrypt('ghanaparent');
+        $programme->code = $request['code'];
+        $programme->name = $request['name'];
 
-        if ($parent->save()){
-              flash($request['firstname'].' successfully saved.')->success();
-            //echo 'saved';
+        //dd($programme);
+
+        if($programme->save()){
+            flash($request['name']. 'Successfully Saved.')->success();
         }else{
-              flash($request['firstname'].' not saved.')->error();
-            //echo 'Not saved';
+            flash($request['name']. 'Not Saved.')->error();
         }
 
-        return redirect()->back();
+        return redirect() ->back();
     }
 
     /**
