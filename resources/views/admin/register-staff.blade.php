@@ -143,9 +143,23 @@
                                                     <option>PhD</option>
                                                 </select>
 
-                                                 @if ($errors->has('qualification'))
+                                                @if ($errors->has('qualification'))
                                                     <span class="help-block">
                                                             <strong>{{ $errors->first('qualification') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <div class="form-group {{ $errors->has('staffid') ? ' has-error' : '' }}">
+                                                <label for="staffid">Staff ID</label>
+                                                <input type="text" class="form-control border-input" placeholder="NDS012001" name="staffid" value="{{ old('staffid') }}">
+
+                                                 @if ($errors->has('staffid'))
+                                                    <span class="help-block">
+                                                            <strong>{{ $errors->first('staffid') }}</strong>
                                                     </span>
                                                 @endif
                                             </div>

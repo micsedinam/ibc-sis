@@ -19,7 +19,7 @@ class staffregisterController extends Controller
 
     public function index()
     {
-        $staff = Staff::select('firstname','surname','othername','dob','gender','phone','address','email','qualification', 'subjectid')->get();
+        $staff = Staff::select('firstname','surname','othername','dob','gender','phone','address','email','qualification', 'staffid')->get();
 
 
         return view('admin.register-staff')->with('staff', $staff);
@@ -56,7 +56,7 @@ class staffregisterController extends Controller
         $staff->email = $request['email'];
         $staff->address = $request['address'];
         $staff->qualification = $request['qualification'];
-        $staff->subjectid = $request['subjectid'];
+        $staff->staffid = $request['staffid'];
         $staff->group = ('Staff');
         $staff->password = bcrypt('ghanastaff');
 

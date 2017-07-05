@@ -33,7 +33,7 @@ class staffRequest extends FormRequest
             'email' => 'required|string|email|max:255|unique:staff',
             'address' => 'required|string|max:255',
             'qualification' => 'required|string|max:255',
-            'subjectid' => 'required|string|max:255',
+            'staffid' => 'required|string|max:255',
         ];
     }
 }

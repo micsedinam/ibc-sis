@@ -7,6 +7,7 @@ use App\Results;
 use Illuminate\Support\Facades\Input;
 use Excel;
 use DB;
+use Auth;
 
 class staffResultController extends Controller
 {
