@@ -50,7 +50,10 @@
     </div>
 </div>
     @include('partials.javascript')
-
+    <script>
+        $('#flash-overlay-modal').modal();
+        setTimeout("$('.alert').delay(3000).slideUp(400)",400);
+    </script>
 </body>
 </html>
 
