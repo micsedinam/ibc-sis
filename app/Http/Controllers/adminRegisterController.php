@@ -57,11 +57,11 @@ class adminRegisterController extends Controller
         $admin->password = bcrypt('ghanaadmin');
 
         if ($admin->save()){
-            //  flash($request['name'].' successfully saved.')->success();
-            echo 'saved';
+              flash($request['firstname'].' successfully saved.')->success();
+            //echo 'saved';
         }else{
-            //  flash($request['name'].' not saved.')->error();
-            echo 'Not saved';
+              flash($request['firstname'].' not saved.')->error();
+            //echo 'Not saved';
         }
 
         return redirect()->back();

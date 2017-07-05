@@ -101,11 +101,11 @@ class studFeesController extends Controller
 
         //dd($fees);
         if ($fees->update()){
-              //flash($request['name'].' successfully saved.')->success();
-            echo 'saved';
+              flash($request['studentid'].' fees successfully saved.')->success();
+            //echo 'saved';
         }else{
-              //flash($request['name'].' not saved.')->error();
-            echo 'Not saved';
+              flash($request['studentid'].' fees not saved.')->error();
+            //echo 'Not saved';
         }
 
         return redirect() ->back();
@@ -122,11 +122,11 @@ class studFeesController extends Controller
         $fees = studFees::findOrFail($fee);
 
         if (studFees::destroy($fee)){
-            //flash ('deleted successfully')->success();
-            echo "saved";
+            flash ('deleted successfully')->success();
+            //echo "saved";
         }else{
-            //flash ('failed to delete')->warning();
-            echo "Not saved";
+            flash ('failed to delete')->warning();
+            //echo "Not saved";
         }
 
         return redirect()->back();
@@ -138,6 +138,7 @@ class studFeesController extends Controller
         Excel::load(Input::file('fees'),function ($reader){
             $reader -> each (function ($sheet){
                 studFees::firstOrCreate($sheet -> toArray());
+                flash('Fees uploaded successfully.') ->success();
             });
         });
 

@@ -15,7 +15,7 @@ class optionalSubjectController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth:admin');
     }
 
     public function index()
@@ -59,11 +59,11 @@ class optionalSubjectController extends Controller
         //dd($optional);
 
         if ($optional->save()) {
-            //  flash($request['name'].' successfully saved.')->success();
-            echo "saved";
+              flash($request['subject_title'].' successfully saved.')->success();
+            //echo "saved";
         }else{
-            //  flash($request['name'].' not saved.')->error();
-            echo "not saved";
+              flash($request['subject_title'].' not saved.')->error();
+            //echo "not saved";
         }
 
         return redirect() ->back();

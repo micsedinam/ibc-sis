@@ -85,11 +85,11 @@ class adminResetController extends Controller
         $admin->password = bcrypt($request['password']);
 
         if ($admin->update()){
-            //  flash($request['name'].' successfully saved.')->success();
-            echo 'saved';
+              flash('Password successfully saved.')->success();
+            //echo 'saved';
         }else{
-            //  flash($request['name'].' not saved.')->error();
-            echo 'Not saved';
+              flash('Password not saved.')->error();
+            //echo 'Not saved';
         }
 
         return redirect() ->back() ->with('admin', $admin);

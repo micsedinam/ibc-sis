@@ -59,11 +59,11 @@ class subjectcoreController extends Controller
         //dd($core);
 
         if ($core->save()) {
-            //  flash($request['name'].' successfully saved.')->success();
-            echo "saved";
+              flash($request['subject_title'].' successfully saved.')->success();
+            //echo "saved";
         }else {
-            //  flash($request['name'].' not saved.')->error();
-            echo "not saved";
+              flash($request['subject_title'].' not saved.')->error();
+            //echo "not saved";
         }
 
         return redirect()->back();

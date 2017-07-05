@@ -27,6 +27,7 @@ class feesController extends Controller
         Excel::load(Input::file('fees'),function ($reader){
             $reader -> each (function ($sheet){
                 Fees::firstOrCreate($sheet -> toArray());
+                flash('Details uploaded successfully.') ->success();
             });
         });
 

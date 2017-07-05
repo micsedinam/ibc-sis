@@ -55,11 +55,11 @@ class noticeController extends Controller
         $notice->date = $request['date'];
 
         if ($notice->save()){
-            //flash($request['name'].' successfully saved.')->success();
-            echo 'saved';
+            flash($request['post_title'].' successfully saved.')->success();
+            //echo 'saved';
         }else{
-            //  flash($request['name'].' not saved.')->error();
-            echo 'Not saved';
+              flash($request['post_title'].' not saved.')->error();
+            //echo 'Not saved';
         }
 
         return redirect()->back();
@@ -108,11 +108,11 @@ class noticeController extends Controller
         $notice->date = $request['date'];
 
         if ($notice->update()){
-            //flash($request['name'].' successfully saved.')->success();
-            echo 'saved';
+            flash($request['post_title'].' successfully saved.')->success();
+            //echo 'saved';
         }else{
-            //  flash($request['name'].' not saved.')->error();
-            echo 'Not saved';
+              flash($request['post_title'].' not saved.')->error();
+            //echo 'Not saved';
         }
 
         return redirect()->back();

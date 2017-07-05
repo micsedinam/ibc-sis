@@ -85,11 +85,11 @@ class resetController extends Controller
         $student->password = bcrypt($request['password']);
 
         if ($student->update()){
-            //  flash($request['name'].' successfully saved.')->success();
-            echo 'saved';
+              flash('Password successfully saved.')->success();
+            //echo 'saved';
         }else{
-            //  flash($request['name'].' not saved.')->error();
-            echo 'Not saved';
+              flash('Password not saved.')->error();
+            //echo 'Not saved';
         }
 
         return redirect()->back() ->with('student', $student);

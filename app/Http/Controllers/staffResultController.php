@@ -129,11 +129,11 @@ class staffResultController extends Controller
 
         //dd($results);
         if ($results->update()){
-            //flash($request['name'].' successfully saved.')->success();
-            echo 'saved';
+            flash($request['subject_title'].' successfully saved.')->success();
+            //echo 'saved';
         }else{
-            //flash($request['name'].' not saved.')->error();
-            echo 'Not saved';
+            flash($request['subject_title'].' not saved.')->error();
+            //echo 'Not saved';
         }
 
         return redirect()->back();
@@ -150,11 +150,11 @@ class staffResultController extends Controller
         $results = Results::findOrFail($result);
 
         if (Results::destroy($result)){
-            //flash ('deleted successfully')->success();
-            echo "saved";
+            flash ('deleted successfully')->success();
+            //echo "saved";
         }else{
-            //flash ('failed to delete')->warning();
-            echo "Not saved";
+            flash ('failed to delete')->warning();
+            //echo "Not saved";
         }
 
         return redirect()->back();
@@ -166,8 +166,15 @@ class staffResultController extends Controller
         Excel::load(Input::file('results'),function ($reader){
             $reader -> each (function ($sheet){
                 Results::firstOrCreate($sheet -> toArray());
+                flash('Results uploaded successfully.') ->success();
             });
         });
+
+        // if($sheet->save()){
+        //     flash('Results uploaded successfully.') ->success();
+        // }else{
+        //     flash('Results not uploaded.') ->error();
+        // }
 
         return redirect() ->back();
     }

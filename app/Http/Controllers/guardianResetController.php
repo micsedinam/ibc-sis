@@ -85,11 +85,11 @@ class guardianResetController extends Controller
         $guardian->password = bcrypt($request['password']);
 
         if ($guardian->update()){
-            //  flash($request['name'].' successfully saved.')->success();
-            echo 'saved';
+              flash('Password successfully saved.')->success();
+            //echo 'saved';
         }else{
-            //  flash($request['name'].' not saved.')->error();
-            echo 'Not saved';
+              flash('Password not saved.')->error();
+            //echo 'Not saved';
         }
 
         return redirect()->to('guardian/login') ->with('guardian', $guardian);
