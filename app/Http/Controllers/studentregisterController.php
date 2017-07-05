@@ -46,6 +46,13 @@ class studentregisterController extends Controller
     {
         //dd($request->all());
 
+         // if(stristr($request['programme'], '@')!== false){
+         //    dd('');
+         // }
+
+        // $short = substr($request['programme'],0,2);
+        // dd($short);
+
         $student = new User();
 
         $student->firstname = $request['firstname'];
@@ -62,11 +69,11 @@ class studentregisterController extends Controller
         $student->password = bcrypt('ghanastudent');
 
         if ($student->save()){
-            //  flash($request['name'].' successfully saved.')->success();
-            echo 'saved';
+              flash($request['name'].' successfully saved.')->success();
+            //echo 'saved';
         }else{
-            //  flash($request['name'].' not saved.')->error();
-            echo 'Not saved';
+             flash($request['name'].' not saved.')->error();
+           // echo 'Not saved';
         }
 
         return redirect()->back();
