@@ -15,7 +15,7 @@ class CreateResultsTable extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('studentid')->unique();
+            $table->string('studentid');
             $table->string('subject_title');
             $table->string('academicyear');
             $table->string('term');
@@ -24,6 +24,7 @@ class CreateResultsTable extends Migration
             $table->string('total');
             $table->string('grade');
             $table->integer('staffid');
+            $table->string('class');
             $table->timestamps();
         });
     }

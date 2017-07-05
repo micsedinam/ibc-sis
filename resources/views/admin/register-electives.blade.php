@@ -94,12 +94,11 @@
                                         </div>
                                     </div>
                                       <div class="row">
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('programme') ? ' has-error' : '' }}">
                                                 <label for="programme">Programme</label>
 
                                                 <select class="form-control"  name="programme" required="">
-                                                    <!-- <option>Select</option> -->
                                                     @foreach($programme as $item)
                                                         <option value="{{$item->name}}">{{$item->name}}</option>
                                                     @endforeach
@@ -111,19 +110,19 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
+                                        </div> --}}
+                                        <div class="col-md-6 col-md-offset-3">
                                             <div class="form-group {{ $errors->has('class') ? ' has-error' : '' }}">
                                                 <label for="class">Class</label>
 
                                                 <select id="class" class="form-control border-input" name="class" value="{{ old('class') }}" required>
-                                                    <option value="bus1">Business</option>
-                                                    <option value="arts1">General Arts 1</option>
-                                                    <option value="arts2">General Arts 2</option>
-                                                    <option value="arts3">General Arts 3</option>
-                                                    <option value="sci1">General Science</option>
-                                                    <option value="he1">Home Economics</option>
-                                                    <option value="va1">Visual Arts</option>
+                                                    <option value="b1">Business</option>
+                                                    <option value="a1">General Arts 1</option>
+                                                    <option value="a2">General Arts 2</option>
+                                                    <option value="a3">General Arts 3</option>
+                                                    <option value="s1">General Science</option>
+                                                    <option value="h1">Home Economics</option>
+                                                    <option value="v1">Visual Arts</option>
                                                 </select>
 
                                                  @if ($errors->has('class'))
@@ -180,12 +179,11 @@
                                         </div>
                                     </div>
                                       <div class="row">
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('programme') ? ' has-error' : '' }}">
                                                 <label for="programme">Programme</label>
 
                                                 <select class="form-control"  name="programme" required="">
-                                                    <!-- <option>Select</option> -->
                                                     @foreach($programme as $item)
                                                         <option value="{{$item->name}}">{{$item->name}}</option>
                                                     @endforeach
@@ -197,19 +195,19 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
+                                        </div> --}}
+                                        <div class="col-md-6 col-md-offset-3">
                                             <div class="form-group {{ $errors->has('class') ? ' has-error' : '' }}">
                                                 <label for="class">Class</label>
 
                                                 <select id="class" class="form-control border-input" name="class" required>
-                                                    <option value="bus1">Business</option>
-                                                    <option value="arts1">General Arts 1</option>
-                                                    <option value="arts2">General Arts 2</option>
-                                                    <option value="arts3">General Arts 3</option>
-                                                    <option value="sci1">General Science</option>
-                                                    <option value="he1">Home Economics</option>
-                                                    <option value="va1">Visual Arts</option>
+                                                    <option value="b1">Business</option>
+                                                    <option value="a1">General Arts 1</option>
+                                                    <option value="a2">General Arts 2</option>
+                                                    <option value="a3">General Arts 3</option>
+                                                    <option value="s1">General Science</option>
+                                                    <option value="h1">Home Economics</option>
+                                                    <option value="v1">Visual Arts</option>
                                                 </select>
 
                                                  @if ($errors->has('class'))

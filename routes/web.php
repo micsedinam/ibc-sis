@@ -57,6 +57,8 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('resultsExport', 'resultsController@getExport');
 	Route::get('manage-results', 'resultsController@resultsrecords');
 	//Route::get('search', 'resultsController@index');
+	Route::get('subject-results', 'resultsController@subresults');
+	Route::post('subject-result', 'resultsController@subresults');
 	Route::post('manage-result', 'resultsController@resultsrecords');
 	Route::get('results/{result}/edit', 'resultsController@edit');
 	Route::post('results/{result}', 'resultsController@update');

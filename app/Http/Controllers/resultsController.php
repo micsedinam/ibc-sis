@@ -7,6 +7,7 @@ use App\Results;
 use Illuminate\Support\Facades\Input;
 use Excel;
 use DB;
+use Auth;
 
 class resultsController extends Controller
 {
@@ -197,7 +198,7 @@ class resultsController extends Controller
 
         Excel::load(Input::file('results'),function ($reader){
             $reader -> each (function ($sheet){
-                Results::firstOrCreate($sheet -> toArray());
+                Results::firstOrCreate($sheet -> toArray(), $sheet->staffid = Auth::user()->id);
                 flash('Results uploaded successfully.') ->success();
             });
         });
@@ -248,6 +249,50 @@ class resultsController extends Controller
         return view('admin.manage-results') 
         ->with('results', $results) 
         ->with('subject', $subject) 
+        ->with('term', $term)
+        ->with('academic', $academic) 
+        //->with('mysubject', $mysubject)
+        ;
+    }
+
+    public function subresults(Request $request)
+    {
+       //dd($request->all());
+        $myclass = $request['class'];
+        $mysubject = $request['subject'];
+        $myterm = $request['term'];
+        $myacademic = $request['academic'];
+
+       // dd($myacademic, $myterm, $mysubject);
+
+        $results = Results::select('id', 'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade')
+                            ->where('class', '=', $myclass)
+                            ->where('subject_title', '=', $mysubject)
+                            ->where('term', '=', $myterm)
+                            ->where('academicyear', '=', $myacademic)
+                            ->get();
+       //dd($results);                        
+
+        $subject = Results::select('subject_title')
+            ->groupBy('subject_title')
+            ->get();
+
+        $term = Results::select('term')
+            ->groupBy('term')
+            ->get();
+
+        $academic = Results::select('academicyear')
+            ->groupBy('academicyear')
+            ->get();
+
+        $class = Results::select('class')
+            ->groupBy('class')
+            ->get();
+
+        return view('admin.admin-results') 
+        ->with('results', $results) 
+        ->with('subject', $subject) 
+        ->with('class', $class) 
         ->with('term', $term)
         ->with('academic', $academic) 
         //->with('mysubject', $mysubject)
