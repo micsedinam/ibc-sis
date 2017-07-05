@@ -30,7 +30,7 @@
 
         <div class="content">
         
-        @include('flash::message');
+        @include('flash::message')
             <div class="container-fluid">
                
                @yield ('content')

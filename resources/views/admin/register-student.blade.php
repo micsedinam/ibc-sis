@@ -14,7 +14,7 @@
 
 @section('content')
 
-        <div class="col-lg-8  col-lg-offset-2 col-md-7">
+        <div class="col-lg-10  col-lg-offset-1 col-md-7">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title text-center">Register Student</h4>
@@ -39,7 +39,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group {{ $errors->has('surname') ? ' has-error' : '' }}">
                                                 <label for="surname">Last Name</label>
-                                                <input type="text" class="form-control border-input" placeholder="Smith" name="surname" value="{{ old('post_category') }}">
+                                                <input type="text" class="form-control border-input" placeholder="Smith" name="surname" value="{{ old('surname') }}">
 
                                                  @if ($errors->has('surname'))
                                                     <span class="help-block">
@@ -144,36 +144,19 @@
                                         </div>
                                     </div>
                                      <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('programme') ? ' has-error' : '' }}">
-                                                <label for="programme">Programme</label>
-
-                                                <select class="form-control"  name="programme" required="">
-                                                    <!-- <option>Select</option> -->
-                                                    @foreach($programme as $item)
-                                                        <option value="{{$item->name}}">{{$item->name}}</option>
-                                                    @endforeach
-                                                </select>
-
-                                                 @if ($errors->has('programme'))
-                                                    <span class="help-block">
-                                                            <strong>{{ $errors->first('programme') }}</strong>
-                                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
+                                        
                                         <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('class') ? ' has-error' : '' }}">
                                                 <label for="class">Class</label>
 
                                                 <select id="class" class="form-control border-input" name="class" value="{{ old('class') }}" required>
-                                                    <option value="bus1">Business</option>
-                                                    <option value="arts1">General Arts 1</option>
-                                                    <option value="arts2">General Arts 2</option>
-                                                    <option value="arts3">General Arts 3</option>
-                                                    <option value="sci1">General Science</option>
-                                                    <option value="he1">Home Economics</option>
-                                                    <option value="va1">Visual Arts</option>
+                                                    <option value="b1">Business</option>
+                                                    <option value="a1">General Arts 1</option>
+                                                    <option value="a2">General Arts 2</option>
+                                                    <option value="a3">General Arts 3</option>
+                                                    <option value="s1">General Science</option>
+                                                    <option value="h1">Home Economics</option>
+                                                    <option value="v1">Visual Arts</option>
                                                 </select>
 
                                                  @if ($errors->has('class'))

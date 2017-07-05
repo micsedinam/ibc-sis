@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\studentRequest;
 use App\Student;
 use App\User;
 use App\Programme;
@@ -47,9 +48,9 @@ class studentregisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(studentRequest $request)
     {
-        //dd($request->all());
+       // dd($request->all());
 
          // if(stristr($request['programme'], '@')!== false){
          //    dd('');
@@ -57,8 +58,55 @@ class studentregisterController extends Controller
 
         // $short = substr($request['programme'],0,2);
         // dd($short);
+        $clas = substr($request['class'],0,1);
+        $stud = substr($request['studentid'],0,2);
+        //dd($stud);
+
+        switch ($clas) {
+            case 'h':
+               if ($stud !== 'HE') {
+                  flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
+                  return back();
+               }else{
+                $programme = 'HE';
+               }
+                break;
+            case 'a':
+             if ($stud !== 'GA') {
+                  flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
+                  return back();
+               }else{
+                    $programme = 'GA';
+                }
+                 break;
+            case 'v':
+                if ($stud !== 'VA') {
+                  flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
+                  return back();
+               }else{
+                   $programme = 'VA';
+               }
+               break;
+            case 's':
+                if ($stud !== 'SC') {
+                  flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
+                  return back();
+               }else{
+                    $programme = 'SCI';
+                }
+                break;            
+            default:
+            if ($stud !== 'BU') {
+                  flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
+                  return back();
+               }else{
+                    $programme = 'BUS';
+                }
+                break;
+        }
 
         $student = new User();
+
 
         $student->firstname = $request['firstname'];
         $student->surname = $request['surname'];
@@ -68,16 +116,18 @@ class studentregisterController extends Controller
         $student->phone = $request['phone'];
         $student->email = $request['email'];
         $student->address = $request['address'];
-        $student->programme = $request['programme'];
+        $student->programme = $programme;
         $student->class = $request['class'];
         $student->studentid = $request['studentid'];
         $student->password = bcrypt('ghanastudent');
 
+        $full = $student->firstname.' '.$student->surname.' '.$student->othername;
+        //dd($student);
         if ($student->save()){
-              flash($request['name'].' successfully saved.')->success();
+              flash($full.' successfully saved.')->success();
             //echo 'saved';
         }else{
-             flash($request['name'].' not saved.')->error();
+             flash($full.' not saved.')->error();
            // echo 'Not saved';
         }
 
