@@ -78,5 +78,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        $('#flash-overlay-modal').modal();
+        setTimeout("$('.alert').delay(3000).slideUp(400)",400);
+    </script>
 </body>
 </html>

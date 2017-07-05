@@ -216,10 +216,12 @@ class resultsController extends Controller
 
     public function resultsrecords(Request $request)
     {
-        //dd($request->all());
-        $mysubject = $request['subject_title'];
+       //dd($request->all());
+        $mysubject = $request['subject'];
         $myterm = $request['term'];
-        $myacademic = $request['academicyear'];
+        $myacademic = $request['academic'];
+
+       // dd($myacademic, $myterm, $mysubject);
 
         $results = Results::select('id', 'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade')
                             ->where('subject_title', '=', $mysubject)
