@@ -38,7 +38,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('admin/results')}}">
+                    <a href="{{url('admin/manage-results')}}">
                         <i class="ti-write"></i>
                         <p>Results</p>
                     </a>

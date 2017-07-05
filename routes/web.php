@@ -53,10 +53,10 @@ Route::group(['prefix' => 'admin'], function() {
 
 
 	Route::resource('results', 'resultsController');
-	Route::post('resultsImport', 'resultsController@postImport');
+	//Route::post('resultsImport', 'resultsController@postImport');
 	Route::get('resultsExport', 'resultsController@getExport');
 	Route::get('manage-results', 'resultsController@resultsrecords');
-	//Route::get('sort', 'resultsController@resultsrecords');
+	//Route::get('search', 'resultsController@index');
 	Route::post('manage-result', 'resultsController@resultsrecords');
 	Route::get('results/{result}/edit', 'resultsController@edit');
 	Route::post('results/{result}', 'resultsController@update');

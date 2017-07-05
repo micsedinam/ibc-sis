@@ -46,11 +46,17 @@ class resultsController extends Controller
             ->groupBy('academicyear')
             ->get();
 
+        $search = \Request::get('search');
+
+        $result = Results::select('*')
+                    ->where('studentid', 'like', '%'.$search.'%')->orderBy('id') ->paginate(3);
+
         return view('admin.manage-results') 
         ->with('results', $results) 
         ->with('subject', $subject) 
         ->with('term', $term)
-        ->with('academic', $academic);
+        ->with('academic', $academic)
+        ->with('result', $result);
     }
 
     /**
@@ -217,6 +223,7 @@ class resultsController extends Controller
     public function resultsrecords(Request $request)
     {
        //dd($request->all());
+        $mystudentid = $request['studentid'];
         $mysubject = $request['subject'];
         $myterm = $request['term'];
         $myacademic = $request['academic'];
@@ -224,6 +231,7 @@ class resultsController extends Controller
        // dd($myacademic, $myterm, $mysubject);
 
         $results = Results::select('id', 'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade')
+                            ->where('studentid', '=', $mystudentid)
                             ->where('subject_title', '=', $mysubject)
                             ->where('term', '=', $myterm)
                             ->where('academicyear', '=', $myacademic)
