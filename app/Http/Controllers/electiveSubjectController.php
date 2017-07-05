@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SubjectsElectives;
+use App\Programme;
 
 class electiveSubjectController extends Controller
 {
@@ -21,7 +22,11 @@ class electiveSubjectController extends Controller
     {
         $elective = SubjectsElectives::select('subjectid', 'subject_title', 'class', 'programme')->get();
 
-        return view('admin.register-electives');
+        $programme = Programme::select('name')
+            ->groupBy('name')
+            ->get();
+
+        return view('admin.register-electives') ->with('programme', $programme);
     }
 
     /**

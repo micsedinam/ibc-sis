@@ -44,6 +44,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{url('admin/subjects')}}">
+                        <i class="ti-book"></i>
+                        <p>Subjects</p>
+                    </a>
+                </li>
+                <li>
                     <a href="{{url('admin/programme')}}">
                         <i class="ti-blackboard"></i>
                         <p>Programmes</p>

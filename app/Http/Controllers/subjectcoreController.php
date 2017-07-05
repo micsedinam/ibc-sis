@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SubjectsCore;
+use App\Programme;
 
 class subjectcoreController extends Controller
 {
@@ -22,8 +23,12 @@ class subjectcoreController extends Controller
     {
         $core = SubjectsCore::select('subjectid', 'subject_title')->get();
 
+        $programme = Programme::select('name')
+                                ->groupBy('name')
+                                ->get();
 
-        return view('admin.register-electives')->with('core', $core);
+
+        return view('admin.register-electives')->with('core', $core) ->with('programme', $programme);
     }
 
     /**

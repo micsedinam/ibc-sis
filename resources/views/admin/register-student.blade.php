@@ -144,22 +144,41 @@
                                         </div>
                                     </div>
                                      <div class="row">
-                                        <div class="col-md-6 col-md-offset-3">
+                                        <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('programme') ? ' has-error' : '' }}">
                                                 <label for="programme">Programme</label>
 
-                                                <select id="programme" class="form-control border-input" name="programme" value="{{ old('programme') }}" required>
-                                                    <option>Select</option>
-                                                    <option>Business</option>
-                                                    <option>General Arts</option>
-                                                    <option>General Science</option>
-                                                    <option>Home Economics</option>
-                                                    <option>Visual Arts</option>
+                                                <select class="form-control"  name="programme" required="">
+                                                    <!-- <option>Select</option> -->
+                                                    @foreach($programme as $item)
+                                                        <option value="{{$item->name}}">{{$item->name}}</option>
+                                                    @endforeach
                                                 </select>
 
                                                  @if ($errors->has('programme'))
                                                     <span class="help-block">
                                                             <strong>{{ $errors->first('programme') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group {{ $errors->has('class') ? ' has-error' : '' }}">
+                                                <label for="class">Class</label>
+
+                                                <select id="class" class="form-control border-input" name="class" value="{{ old('class') }}" required>
+                                                    <option value="bus1">Business</option>
+                                                    <option value="arts1">General Arts 1</option>
+                                                    <option value="arts2">General Arts 2</option>
+                                                    <option value="arts3">General Arts 3</option>
+                                                    <option value="sci1">General Science</option>
+                                                    <option value="he1">Home Economics</option>
+                                                    <option value="va1">Visual Arts</option>
+                                                </select>
+
+                                                 @if ($errors->has('class'))
+                                                    <span class="help-block">
+                                                            <strong>{{ $errors->first('class') }}</strong>
                                                     </span>
                                                 @endif
                                             </div>

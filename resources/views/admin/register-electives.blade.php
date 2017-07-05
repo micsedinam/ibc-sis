@@ -27,7 +27,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('subjectid') ? ' has-error' : '' }}">
                                                 <label for="subjectid">Subject ID</label>
-                                                <input type="text" class="form-control border-input" placeholder="ENG121" name="subjectid" value="{{ old('subjectid') }}">
+                                                <input type="text" class="form-control border-input" placeholder="ENG121" name="subjectid" value="{{ old('subjectid') }}" required>
 
                                                  @if ($errors->has('subjectid'))
                                                     <span class="help-block">
@@ -39,7 +39,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('subject_title') ? ' has-error' : '' }}">
                                                 <label for="subject_title">Subject Title</label>
-                                                <input type="text" class="form-control border-input" placeholder="English Language" name="subject_title" value="{{ old('subject_title') }}">
+                                                <input type="text" class="form-control border-input" placeholder="English Language" name="subject_title" value="{{ old('subject_title') }}" required>
 
                                                  @if ($errors->has('subject_title'))
                                                     <span class="help-block">
@@ -71,7 +71,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('subjectid') ? ' has-error' : '' }}">
                                                 <label for="subjectid">Subject ID</label>
-                                                <input type="text" class="form-control border-input" placeholder="FM221" name="subjectid" value="{{ old('subjectid') }}">
+                                                <input type="text" class="form-control border-input" placeholder="FM221" name="subjectid" value="{{ old('subjectid') }}" required>
 
                                                  @if ($errors->has('subjectid'))
                                                     <span class="help-block">
@@ -83,7 +83,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('subject_title') ? ' has-error' : '' }}">
                                                 <label for="subject_title">Subject Title</label>
-                                                <input type="text" class="form-control border-input" placeholder="Further Mathematics" name="subject_title" value="{{ old('subject_title') }}">
+                                                <input type="text" class="form-control border-input" placeholder="Further Mathematics" name="subject_title" value="{{ old('subject_title') }}" required>
 
                                                  @if ($errors->has('subject_title'))
                                                     <span class="help-block">
@@ -98,13 +98,11 @@
                                             <div class="form-group {{ $errors->has('programme') ? ' has-error' : '' }}">
                                                 <label for="programme">Programme</label>
 
-                                                <select id="programme" class="form-control border-input" name="programme" value="{{ old('programme') }}" required>
-                                                    <option>Select</option>
-                                                    <option>Business</option>
-                                                    <option>General Arts</option>
-                                                    <option>General Science</option>
-                                                    <option>Home Economics</option>
-                                                    <option>Visual Arts</option>
+                                                <select class="form-control"  name="programme" required="">
+                                                    <!-- <option>Select</option> -->
+                                                    @foreach($programme as $item)
+                                                        <option value="{{$item->name}}">{{$item->name}}</option>
+                                                    @endforeach
                                                 </select>
 
                                                  @if ($errors->has('programme'))
@@ -119,14 +117,13 @@
                                                 <label for="class">Class</label>
 
                                                 <select id="class" class="form-control border-input" name="class" value="{{ old('class') }}" required>
-                                                    <option>Select</option>
-                                                    <option>Business</option>
-                                                    <option>General Arts 1</option>
-                                                    <option>General Arts 2</option>
-                                                    <option>General Arts 3</option>
-                                                    <option>General Science</option>
-                                                    <option>Home Economics</option>
-                                                    <option>Visual Arts</option>
+                                                    <option value="bus1">Business</option>
+                                                    <option value="arts1">General Arts 1</option>
+                                                    <option value="arts2">General Arts 2</option>
+                                                    <option value="arts3">General Arts 3</option>
+                                                    <option value="sci1">General Science</option>
+                                                    <option value="he1">Home Economics</option>
+                                                    <option value="va1">Visual Arts</option>
                                                 </select>
 
                                                  @if ($errors->has('class'))
@@ -160,7 +157,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('subjectid') ? ' has-error' : '' }}">
                                                 <label for="subjectid">Subject ID</label>
-                                                <input type="text" class="form-control border-input" placeholder="CRS321" name="subjectid" value="{{ old('subjectid') }}">
+                                                <input type="text" class="form-control border-input" placeholder="CRS321" name="subjectid" value="{{ old('subjectid') }}" required>
 
                                                  @if ($errors->has('subjectid'))
                                                     <span class="help-block">
@@ -172,7 +169,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('subject_title') ? ' has-error' : '' }}">
                                                 <label for="subject_title">Subject Title</label>
-                                                <input type="text" class="form-control border-input" placeholder="Catholic Religious Studies" name="subject_title" value="{{ old('subject_title') }}">
+                                                <input type="text" class="form-control border-input" placeholder="Catholic Religious Studies" name="subject_title" value="{{ old('subject_title') }}" required>
 
                                                  @if ($errors->has('subject_title'))
                                                     <span class="help-block">
@@ -187,13 +184,11 @@
                                             <div class="form-group {{ $errors->has('programme') ? ' has-error' : '' }}">
                                                 <label for="programme">Programme</label>
 
-                                                <select id="programme" class="form-control border-input" name="programme" value="{{ old('programme') }}" required>
-                                                    <option>Select</option>
-                                                    <option>Business</option>
-                                                    <option>General Arts</option>
-                                                    <option>General Science</option>
-                                                    <option>Home Economics</option>
-                                                    <option>Visual Arts</option>
+                                                <select class="form-control"  name="programme" required="">
+                                                    <!-- <option>Select</option> -->
+                                                    @foreach($programme as $item)
+                                                        <option value="{{$item->name}}">{{$item->name}}</option>
+                                                    @endforeach
                                                 </select>
 
                                                  @if ($errors->has('programme'))
@@ -207,15 +202,14 @@
                                             <div class="form-group {{ $errors->has('class') ? ' has-error' : '' }}">
                                                 <label for="class">Class</label>
 
-                                                <select id="class" class="form-control border-input" name="class" value="{{ old('class') }}" required>
-                                                    <option>Select</option>
-                                                    <option>Business</option>
-                                                    <option>General Arts 1</option>
-                                                    <option>General Arts 2</option>
-                                                    <option>General Arts 3</option>
-                                                    <option>General Science</option>
-                                                    <option>Home Economics</option>
-                                                    <option>Visual Arts</option>
+                                                <select id="class" class="form-control border-input" name="class" required>
+                                                    <option value="bus1">Business</option>
+                                                    <option value="arts1">General Arts 1</option>
+                                                    <option value="arts2">General Arts 2</option>
+                                                    <option value="arts3">General Arts 3</option>
+                                                    <option value="sci1">General Science</option>
+                                                    <option value="he1">Home Economics</option>
+                                                    <option value="va1">Visual Arts</option>
                                                 </select>
 
                                                  @if ($errors->has('class'))

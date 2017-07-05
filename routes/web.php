@@ -30,7 +30,7 @@ Route::group(['prefix' => 'admin'], function() {
 
 	Route::resource('parent', 'parentController');
 
-	Route::resource('subjects', 'subjectcoreController@index');
+	Route::resource('subjects', 'subjectcoreController');
 	Route::resource('core', 'subjectcoreController');
 
 	Route::resource('elective', 'electiveSubjectController');
