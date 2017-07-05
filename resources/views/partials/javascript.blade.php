@@ -28,6 +28,7 @@
     
     <!--  methods for manipulating the wizard and the validation -->
     <script src="{{url('assets/js/wizard.js')}}"></script>
+    <script src="{{url('js/custom.js')}}"></script>
 
 	<!-- <script type="text/javascript">
             $(document).ready(function(){

@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\parentRequest;
 
 use Illuminate\Http\Request;
 use App\Guardian;
+use App\User;
+use App\Studentparent;
 
 class parentController extends Controller
 {
@@ -21,10 +24,11 @@ class parentController extends Controller
     public function index()
     {
 
-        $guardian = Guardian::select('firstname', 'surname', 'othername', 'dob', 'gender', 'phone', 'email', 'address')->get();
+       $guardian = Guardian::select('id','firstname', 'surname', 'othername', 'dob', 'gender', 'phone', 'email', 'address')->get();
 
 
-        return view('admin.register-parent')->with('guardian', $guardian);
+        return view('admin.parent-list')
+        ->with('guardian', $guardian);
     }
 
     /**
@@ -34,7 +38,10 @@ class parentController extends Controller
      */
     public function create()
     {
-        //
+        $guardian = Guardian::select('firstname', 'surname', 'othername', 'dob', 'gender', 'phone', 'email', 'address')->get();
+
+
+        return view('admin.register-parent')->with('guardian', $guardian);
     }
 
     /**
@@ -43,7 +50,7 @@ class parentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(parentRequest $request)
     {
         //dd($request->all());
         $parent = new Guardian();
@@ -87,9 +94,21 @@ class parentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($parent)
     {
-        //
+        $parent = Guardian::findOrFail($parent);
+
+        $wards = User::select('firstname','surname','othername','class','studentid','studentparents.stud_id','studentparents.parent_id','users.programme','studentparents.id','studentparents.state')
+            ->join('studentparents', 'studentparents.stud_id', '=', 'users.id')
+            ->where('studentparents.parent_id', $parent->id)
+            ->get();
+            $wardcount = count($wards);
+            //dd($wards);
+
+        return view('admin.parent-edit')
+            ->with('wards', $wards)
+            ->with('wardcount', $wardcount)
+            ->with('parent', $parent);
     }
 
     /**
@@ -113,5 +132,33 @@ class parentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function confirm($id)
+    {
+       // dd($id);
+        $confirm = Studentparent::findOrFail($id);
+        $confirm->state = 'approved';
+
+        if ($confirm->update()) {
+            flash('Request Approved')->success();
+        }else{
+            flash('Oops Error ocured')->error();
+        }
+        return back();
+
+    }
+    public function deny($id)
+    {
+       // dd($id);
+        $confirm = Studentparent::findOrFail($id);
+        $confirm->state = 'pending';
+
+        if ($confirm->update()) {
+            flash('Request Denied')->success();
+        }else{
+            flash('Oops Error ocured')->error();
+        }
+        return back();
     }
 }

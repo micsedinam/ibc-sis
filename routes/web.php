@@ -29,6 +29,8 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::resource('student', 'studentregisterController');
 
 	Route::resource('parent', 'parentController');
+	Route::get('parent/{id}/confirm', 'parentController@confirm');
+	Route::get('parent/{id}/deny', 'parentController@deny');
 
 	Route::resource('subjects', 'subjectcoreController');
 	Route::resource('core', 'subjectcoreController');
