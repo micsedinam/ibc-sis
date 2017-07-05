@@ -27,7 +27,7 @@
                             </div> 
                             <div class="col-md-8 col-md-offset-2">
                                 <h6 class="box-title text-center">Sort By Subject - Term - Academic Year</h6>
-                                    <form role="form" method="POST" action="{{ url('admin/sort') }}">
+                                    <form role="form" method="POST" action="{{ url('admin/manage-result') }}">
                                     {{ csrf_field() }}
 
                                      <div class="row">

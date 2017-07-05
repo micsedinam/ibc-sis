@@ -32,6 +32,8 @@
             <div class="container-fluid">
                
                @yield ('content')
+
+               @include('flash::message');
                 
             </div>
         </div>

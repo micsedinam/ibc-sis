@@ -56,8 +56,8 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::post('resultsImport', 'resultsController@postImport');
 	Route::get('resultsExport', 'resultsController@getExport');
 	Route::get('manage-results', 'resultsController@resultsrecords');
-	Route::get('sort', 'resultsController@resultsrecords');
-	Route::post('sort', 'resultsController@resultsrecords');
+	//Route::get('sort', 'resultsController@resultsrecords');
+	Route::post('manage-result', 'resultsController@resultsrecords');
 	Route::get('results/{result}/edit', 'resultsController@edit');
 	Route::post('results/{result}', 'resultsController@update');
 	Route::get('results/{result}/delete', 'resultsController@destroy');
@@ -71,6 +71,8 @@ Route::group(['prefix' => 'admin'], function() {
 
 	Route::resource('passreset', 'adminResetController');
 	Route::post('passresets', 'adminResetController@update');
+
+	Route::resource('programme', 'programmeController');
 
 });
 

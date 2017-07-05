@@ -62,11 +62,11 @@ class studentregisterController extends Controller
         $student->password = bcrypt('ghanastudent');
 
         if ($student->save()){
-            //  flash($request['name'].' successfully saved.')->success();
-            echo 'saved';
+              flash($request['firstname'].' successfully saved.')->success();
+            //echo 'saved';
         }else{
-            //  flash($request['name'].' not saved.')->error();
-            echo 'Not saved';
+              flash($request['firstname'].' not saved.')->error();
+            //echo 'Not saved';
         }
 
         return redirect()->back();
@@ -108,11 +108,11 @@ class studentregisterController extends Controller
         $student->password = bcrypt($request['password']);
 
         if ($student->update()){
-            //  flash($request['name'].' successfully saved.')->success();
+              flash($request['name'].' successfully saved.')->success();
             echo 'saved';
         }else{
-            //  flash($request['name'].' not saved.')->error();
-            echo 'Not saved';
+              flash($request['name'].' not saved.')->error();
+            //echo 'Not saved';
         }
 
         return redirect()->back() ->with('student', $student);

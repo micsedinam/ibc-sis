@@ -23,15 +23,34 @@ class resultsController extends Controller
 
     public function index()
     {
-        $results = Results::select('id', 'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade')->get();
-
         $mysubject = ['subject_title'];
+        $myterm = ['term'];
+        $myacademic = ['academicyear'];
+
+        $results = Results::select('id', 'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade')
+                            ->where('subject_title', '=', $mysubject)
+                            ->where('term', '=', $myterm)
+                            ->where('academicyear', '=', $myacademic)
+                            ->get();
+       //dd($results);                        
 
         $subject = Results::select('subject_title')
             ->groupBy('subject_title')
             ->get();
 
-        return view('admin.results') ->with('subject', $subject) ->with('mysubject', $mysubject);
+        $term = Results::select('term')
+            ->groupBy('term')
+            ->get();
+
+        $academic = Results::select('academicyear')
+            ->groupBy('academicyear')
+            ->get();
+
+        return view('admin.manage-results') 
+        ->with('results', $results) 
+        ->with('subject', $subject) 
+        ->with('term', $term)
+        ->with('academic', $academic);
     }
 
     /**
@@ -136,11 +155,11 @@ class resultsController extends Controller
 
         //dd($results);
         if ($results->update()){
-            //flash($request['name'].' successfully saved.')->success();
+            flash($request['name'].' successfully saved.')->success();
             echo 'saved';
         }else{
-            //flash($request['name'].' not saved.')->error();
-            echo 'Not saved';
+            flash($request['name'].' not saved.')->error();
+            //echo 'Not saved';
         }
 
         return redirect()->back();
@@ -195,12 +214,12 @@ class resultsController extends Controller
         $myterm = $request['term'];
         $myacademic = $request['academicyear'];
 
-        $results = Results::select('results.id', 'results.studentid', 'results.subject_title', 'results.academicyear', 'results.term', 'results.ca_score', 'results.exam_score', 'results.total', 'results.grade')
-                            ->where('results.subject_title', '=', $mysubject)
-                            ->where('results.term', '=', $myterm)
-                            ->where('results.academicyear', '=', $myacademic)
+        $results = Results::select('id', 'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade')
+                            ->where('subject_title', '=', $mysubject)
+                            ->where('term', '=', $myterm)
+                            ->where('academicyear', '=', $myacademic)
                             ->get();
-       // dd($results);                        
+       //dd($results);                        
 
         $subject = Results::select('subject_title')
             ->groupBy('subject_title')
