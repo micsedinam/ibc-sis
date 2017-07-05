@@ -39,7 +39,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group {{ $errors->has('surname') ? ' has-error' : '' }}">
                                                 <label for="surname">Last Name</label>
-                                                <input type="text" class="form-control border-input" placeholder="Smith" name="surname" value="{{ old('surname') }}">
+                                                <input type="text" class="form-control border-input" placeholder="Smith" name="surname" value="{{ old('surname') }}" required>
 
                                                  @if ($errors->has('surname'))
                                                     <span class="help-block">
@@ -51,7 +51,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group {{ $errors->has('othername') ? ' has-error' : '' }}">
                                                 <label for="othername">Other Names</label>
-                                                <input type="text" class="form-control border-input" placeholder="Blankson" name="othername" value="{{ old('othername') }}">
+                                                <input type="text" class="form-control border-input" placeholder="Blankson" name="othername" value="{{ old('othername') }}" required>
 
                                                  @if ($errors->has('othername'))
                                                     <span class="help-block">
@@ -109,7 +109,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
                                                 <label for="address">Residential Address</label>
-                                                <input type="text" class="form-control border-input" placeholder="Fiapre" name="address" value="{{ old('address') }}">
+                                                <input type="text" class="form-control border-input" placeholder="Fiapre" name="address" value="{{ old('address') }}" required>
 
                                                  @if ($errors->has('address'))
                                                     <span class="help-block">
@@ -121,7 +121,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
                                                 <label for="phone">Phone</label>
-                                                <input type="number" class="form-control border-input" placeholder="0240000000" name="phone" value="{{ old('phone') }}">
+                                                <input type="number" class="form-control border-input" placeholder="0240000000" name="phone" value="{{ old('phone') }}" required>
 
                                                  @if ($errors->has('phone'))
                                                     <span class="help-block">
@@ -131,7 +131,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group {{ $errors->has('studentid') ? ' has-error' : '' }}">
+                                            <div class="form-group {{ $errors->has('studentid') ? ' has-error' : '' }}" required>
                                                 <label for="studentid">Student ID</label>
                                                 <input type="text" class="form-control border-input" placeholder="GA1012013002" name="studentid" value="{{ old('studentid') }}">
 
@@ -145,8 +145,8 @@
                                     </div>
                                      <div class="row">
                                         
-                                        <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('class') ? ' has-error' : '' }}">
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <div class="form-group {{ $errors->has('class') ? ' has-error' : '' }}" required>
                                                 <label for="class">Class</label>
 
                                                 <select id="class" class="form-control border-input" name="class" value="{{ old('class') }}" required>

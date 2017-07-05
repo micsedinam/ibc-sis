@@ -62,7 +62,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('admin/parent')}}">
+                    <a href="{{url('admin/parent/create')}}">
                         <i class="ti-plus"></i>
                         <p>Register Parent</p>
                     </a>
