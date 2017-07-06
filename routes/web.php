@@ -104,6 +104,12 @@ Route::group(['prefix' => 'guardian'], function() {
 	Route::resource('passreset', 'guardianResetController');
 	Route::post('passresets', 'guardianResetController@update');
 
+	Route::get('/ward', 'parentwardController@index')->name('parent.ward');
+	Route::get('/ward/find', 'parentwardController@index')->name('parent.ward');
+	Route::post('/ward/find', 'parentwardController@indexfind')->name('parent.wardfind');
+	Route::get('/ward/{id}/add', 'parentwardController@addward')->name('parent.addward');
+	Route::get('/ward/{id}/delete', 'parentwardController@deleteward')->name('parent.deleteward');
+
 
 });
 
