@@ -198,7 +198,7 @@ class resultsController extends Controller
 
         Excel::load(Input::file('results'),function ($reader){
             $reader -> each (function ($sheet){
-                Results::firstOrCreate($sheet -> toArray(),);
+                Results::firstOrCreate($sheet -> toArray());
                 flash('Results uploaded successfully.') ->success();
             });
         });

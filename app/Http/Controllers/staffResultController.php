@@ -167,7 +167,7 @@ class staffResultController extends Controller
         Excel::load(Input::file('results'),function ($reader){
             $reader -> each (function ($sheet){
                 Results::firstOrCreate($sheet -> toArray());
-                flash('Results uploaded successfully.') ->success();
+                flash(' Results uploaded successfully.') ->success();
             });
         });
 
@@ -177,7 +177,7 @@ class staffResultController extends Controller
         //     flash('Results not uploaded.') ->error();
         // }
 
-        return redirect() ->back();
+        return redirect() ->to('staff/manage-results');
     }
 
     public function getExport(){
@@ -191,7 +191,10 @@ class staffResultController extends Controller
 
     public function resultsrecords()
     {
-        $results = Results::select('id', 'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade')->get();
+        $results = Results::select('id', 'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade')
+                            ->where('staffid', '=', Auth::user()->staffid)
+                            ->latest()
+                            ->get();
 
         return view('staff.manage-results') ->with('results', $results);
     }

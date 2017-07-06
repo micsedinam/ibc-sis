@@ -17,7 +17,7 @@
         		<div class="col-lg-8  col-lg-offset-2">
                         <div class="card">
                             <div class="header">
-                            	{{-- <a href="{{url('staff/manage-results')}}" class="btn btn-info">Manage Results</a> --}}
+                            	<a href="{{url('staff/manage-results')}}" class="btn btn-info">Manage Results</a>
                                 <h4 class="title text-center">Subject Results</h4>
                             </div>
                             <div class="content">

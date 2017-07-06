@@ -5,25 +5,25 @@
 @endsection
 
 @section('title')
-    Admin | Manage Results 
+    Staff | Manage Results 
 @endsection
 
 @section('sidebar')
-    @include('partials.side-nav')
+    @include('partials.staff-nav')
 @stop
 
 @section('content')
 
     	<div class="row">
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-12">
                     <div class="panel panel-info">
                         <div class="panel-heading text-center text-warning"> <h3 class="text-warning text-center">STUDENT RESULTS LIST</h3></div>
                         <div class="panel-body">
                             <div class="col-md-12">
-                            	<a href="{{url('admin/results')}}" class="btn btn-success"><i class="ti-angle-double-left"></i>Back</a>
+                            	<a href="{{url('staff/results')}}" class="btn btn-success"><i class="ti-angle-double-left"></i>Back</a>
                                 {{-- <a href="{{URL::to('resultdeleteAll')}}" class="btn btn-danger">Delete All</a> --}}
 			                    {{--<a href="{{URL::to('getImport')}}" class="btn btn-success">Import</a>--}}
-			                    <a href="{{URL::to('admin/resultsExport')}}" class="btn btn-info">Export to Excel</a>
+			                    {{-- <a href="{{URL::to('admin/resultsExport')}}" class="btn btn-info">Export to Excel</a> --}}
                             </div> 
 
                             <div class="col-md-12 col-lg-12 col-sm-12">
@@ -41,7 +41,6 @@
                                                     <th>EXAM SCORE</th>
                                                     <th>TOTAL</th>
                                                     <th>GRADE</th>
-                                                    <th>MANAGE</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -54,10 +53,6 @@
                                                     <td class="text-center">{{ $element->exam_score }}</td>
                                                     <td class="text-center">{{ $element->total }}</td>
                                                     <td class="text-center">{{ $element->grade }}</td>
-				                                    <td>
-				                                        <a href="{{url('admin/results/'.$element->id.'/edit')}}"><i class="ti-pencil-alt"></i></a>
-				                                        <a href="{{url('admin/results/'.$element->id.'/delete')}}"><i class="ti-close text-danger"></i></a>
-				                                    </td>
 				                                </tr>
 				                            	@endforeach
 

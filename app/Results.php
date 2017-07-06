@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Results extends Model
 {
      protected $fillable = [
-        'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade',
+        'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade', 'staffid', 'class',
     ];
 
     /**
