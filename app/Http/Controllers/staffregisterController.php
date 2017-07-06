@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Staff;
+use App\staffSubject;
 
 class staffregisterController extends Controller
 {
@@ -19,10 +20,10 @@ class staffregisterController extends Controller
 
     public function index()
     {
-        $staff = Staff::select('firstname','surname','othername','dob','gender','phone','address','email','qualification', 'staffid')->get();
+        $staff = Staff::select('*')->get();
 
 
-        return view('admin.register-staff')->with('staff', $staff);
+        return view('admin.staff-list')->with('staff', $staff);
     }
 
     /**
@@ -32,7 +33,10 @@ class staffregisterController extends Controller
      */
     public function create()
     {
-        //
+        $staff = Staff::select('firstname','status','surname','othername','dob','gender','phone','address','email','qualification', 'staffid')->get();
+
+
+        return view('admin.register-staff')->with('staff', $staff);
     }
 
     /**
@@ -92,7 +96,18 @@ class staffregisterController extends Controller
      */
     public function edit($id)
     {
-        //
+      $staff = Staff::findOrFail($id);
+
+     if ($staff->status == 'active') {
+         $staff->status = 'disabled';
+         $staff->update();
+         flash($staff->firstname.' have been deactivated.')->success();
+     } else {
+          $staff->status = 'active';
+         $staff->update();
+         flash($staff->firstname.' have been activated.')->success();
+     }
+      return back();
     }
 
     /**
@@ -115,6 +130,9 @@ class staffregisterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $staff = Staff::findOrFail($id);
+        $staff->delete();
+        flash('Deleted.');
+        return back();
     }
 }

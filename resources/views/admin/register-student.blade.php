@@ -51,7 +51,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group {{ $errors->has('othername') ? ' has-error' : '' }}">
                                                 <label for="othername">Other Names</label>
-                                                <input type="text" class="form-control border-input" placeholder="Blankson" name="othername" value="{{ old('othername') }}" required>
+                                                <input type="text" class="form-control border-input" placeholder="Blankson" name="othername" value="{{ old('othername') }}">
 
                                                  @if ($errors->has('othername'))
                                                     <span class="help-block">

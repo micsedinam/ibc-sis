@@ -131,7 +131,10 @@ class parentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $guard = Guardian::findOrFail($id);
+        $guard->delete();
+        flash('Deleted.');
+        return back();
     }
 
     public function confirm($id)
