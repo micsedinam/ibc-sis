@@ -77,24 +77,24 @@ class parentBillController extends Controller
                     //dd($mybill);
 
                         $bill = studFees::select('*')
-                                        ->where('studentid','=',$mybill)
-                                        ->latest()
-                                        ->get()
+                            ->where('studentid','=',$mybill)
+                            ->latest()
+                            ->get()
                         ;
 
 
                         $bills = Fees::select('fees')
-                                        ->join('users', 'fees.programme', '=', 'users.programme')
-                                        ->where('users.studentid', '=', $mybill)
-                                        ->select('fees.*')
-                                        ->get()
+                            ->join('users', 'fees.programme', '=', 'users.programme')
+                            ->where('users.studentid', '=', $mybill)
+                            ->select('fees.*')
+                            ->get()
                         ;
                         //dd($bills);
 
                         $student = User::select('users')
-                                        ->where('studentid', '=', $mybill)
-                                        ->select('firstname', 'surname', 'programme', 'studentid')
-                                        ->get()
+                            ->where('studentid', '=', $mybill)
+                            ->select('firstname', 'surname', 'programme', 'studentid')
+                            ->get()
                         ;
                 //dd($bills);
                 //dd($bill, $bills, $student);

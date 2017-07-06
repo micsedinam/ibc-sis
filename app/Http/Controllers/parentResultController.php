@@ -77,9 +77,9 @@ class parentResultController extends Controller
                     ;   
 
                     $student = User::select('users')
-                                    ->where('studentid', '=', $myresult)
-                                    ->select('firstname', 'surname', 'programme', 'studentid')
-                                    ->get()
+                        ->where('studentid', '=', $myresult)
+                        ->select('firstname', 'surname', 'programme', 'studentid')
+                        ->get()
                     ;
 
                     //dd($result, $results, $student);

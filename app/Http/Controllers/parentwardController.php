@@ -63,7 +63,7 @@ class parentwardController extends Controller
 			$add->stud_id = $id;
 
 			if ($add->save()) {
-				flash('Nice, you added a new ward, please wait for Admin\'s approval.')->success();
+				flash('Nice, you added a new ward. Please wait for Admin\'s approval.')->success();
 			} else {
 				flash('Oops, could not add ward.')->error();
 			}

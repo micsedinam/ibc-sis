@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('page-name')
-    Wards
+    Manage | Wards
 @endsection
 
 @section('title')
