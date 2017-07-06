@@ -24,6 +24,19 @@
                                 {{-- <a href="{{URL::to('resultdeleteAll')}}" class="btn btn-danger">Delete All</a> --}}
 			                    {{--<a href="{{URL::to('getImport')}}" class="btn btn-success">Import</a>--}}
 			                    {{-- <a href="{{URL::to('admin/resultsExport')}}" class="btn btn-info">Export to Excel</a> --}}
+
+                                <div class="col-md-3 pull-right">
+                                    <form method="GET" action="{{url('staff/search')}}" class="pull-right" role="search">
+                                        <div class="input-group custom-search-form">
+                                            <input type="text" name="search" class="form-control" placeholder="search here...">
+                                            <span class="input-group-btn">
+                                                <button type="submit" class="btn btn-info btn-fill">
+                                                    <i class="ti-search"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
                             </div> 
 
                             <div class="col-md-12 col-lg-12 col-sm-12">

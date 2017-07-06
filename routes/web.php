@@ -120,6 +120,8 @@ Route::group(['prefix' => 'staff'], function() {
 	Route::post('resultsImport', 'staffResultController@postImport');
 	Route::get('resultsExport', 'staffResultController@getExport');
 	Route::get('manage-results', 'staffResultController@resultsrecords');
+	Route::get('search', 'staffResultController@searchrecords');
+	//Route::post('isearch', 'staffResultController@searchrecords');
 	Route::get('results/{result}/edit', 'staffResultController@edit');
 	Route::post('results/{result}', 'staffResultController@update');
 	Route::get('results/{result}/delete', 'staffResultController@destroy');

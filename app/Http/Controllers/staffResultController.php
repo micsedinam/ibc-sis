@@ -196,6 +196,22 @@ class staffResultController extends Controller
                             ->latest()
                             ->get();
 
-        return view('staff.manage-results') ->with('results', $results);
+        $search = \Request::get('search');
+        
+        $result = Results::select('*')
+                    ->where('studentid', '=', '%'.$search.'%')->orderBy('id') ->paginate(3);
+
+        return view('staff.manage-results') ->with('results', $results) ->with('result', $result) ->with('search', $search) ;
+    }
+
+    public function searchrecords()
+    {
+
+        $search = \Request::get('search');
+        
+        $result = Results::select('*')
+                    ->where('studentid', '=', '%'.$search.'%')->orderBy('id') ->paginate(3);
+
+        return view('staff.manage-results') ->with('results', $results) ->with('result', $result) ->with('search', $search) ;
     }
 }
