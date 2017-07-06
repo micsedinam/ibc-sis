@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('admin/programme')}}">
+                    <a href="{{url('admin/programme-manage')}}">
                         <i class="ti-blackboard"></i>
                         <p>Programmes</p>
                     </a>

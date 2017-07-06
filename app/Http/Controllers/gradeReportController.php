@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Results;
+use DB;
 
 class gradeReportController extends Controller
 {
@@ -51,12 +52,22 @@ class gradeReportController extends Controller
             ->groupBy('class')
             ->get();
 
+        $report = Results::select(DB::raw('count(grade) as gradecount'), 'grade')
+                            ->where('class', '=', $myclass)
+                            ->where('subject_title', '=', $mysubject)
+                            ->where('term', '=', $myterm)
+                            ->where('academicyear', '=', $myacademic)
+                            ->groupBy('grade')
+                            ->get();
+        //dd($report);
+
         return view('admin.grade-report') 
         ->with('results', $results) 
         ->with('subject', $subject) 
         ->with('class', $class) 
         ->with('term', $term)
         ->with('academic', $academic) 
+        ->with('report', $report) 
         //->with('mysubject', $mysubject)
         ;
     }

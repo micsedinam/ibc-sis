@@ -60,6 +60,8 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::resource('passreset', 'adminResetController');
 	Route::post('passresets', 'adminResetController@update');
 	Route::resource('programme', 'programmeController');
+	Route::get('programme-manage', 'programmeController@manage');
+	Route::post('programme/{programme}', 'programmeController@update');
 	//Route::get('grade-report', 'gradeReportController@index');
 	Route::get('grade-report', 'gradeReportController@subresults');
 	Route::post('report', 'gradeReportController@subresults');

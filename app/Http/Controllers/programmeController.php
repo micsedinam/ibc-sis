@@ -75,9 +75,11 @@ class programmeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($programme)
     {
-        //
+        $prog = Programme::findOrFail($programme);
+
+        return view('admin.prog-edit') ->with('prog', $prog);
     }
 
     /**
@@ -87,9 +89,23 @@ class programmeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $programme)
     {
-        //
+        //dd($request->all());
+        $prog = Programme::findOrFail($programme);
+
+        $prog->code = $request['code'];
+        $prog->name = $request['name'];
+
+        //dd($programme);
+
+        if($prog->update()){
+            flash($request['name']. ' Successfully Saved.')->success();
+        }else{
+            flash($request['name']. ' Not Saved.')->error();
+        }
+
+        return redirect() ->back();
     }
 
     /**
@@ -101,5 +117,12 @@ class programmeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function manage()
+    {
+        $prog = Programme::select('id', 'code', 'name')->get();
+
+        return view('admin.manage-prog') ->with('prog', $prog);
     }
 }

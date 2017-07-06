@@ -83,7 +83,35 @@
                                     <div class="panel panel-warning">
                                         <div class="panel-heading text-center text-success"> <h3 class="text-success text-center">CLASS PERFORMANCE REPORT</h3></div>
                                         <div class="panel-body">
-                                            
+                                            {{-- @foreach($report as $item)
+                                               <h6 class="text-center text-info">{{$item->gradecount.' students scored '.$item->grade}} </h6> <br> <hr>
+                                            @endforeach --}}
+
+                                            <div class="col-md-12 col-lg-12 col-sm-12">
+                                                <div class="card">
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th class="text-success">NO. STUDENTS</th>
+                                                                    <th class="text-info">GRADE ATTAINED</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                @foreach($report as $item)
+                                                                <tr>
+                                                                    <td>{{ $loop->iteration }}</td>
+                                                                    <td>{{ $item->gradecount }}</td>
+                                                                    <td>{{ $item->grade }}</td>
+                                                                </tr>
+                                                                @endforeach
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
