@@ -15,8 +15,9 @@ class CreateStaffSubjectsTable extends Migration
     {
         Schema::create('staff_subjects', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('studentid');
+            $table->integer('subject_id');
             $table->integer('staffid');
+            $table->enum('type',['core','elective','optional']);
             $table->timestamps();
         });
     }

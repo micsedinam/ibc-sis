@@ -27,7 +27,7 @@
                 </li> --}}
                 <li>
                     <a href="{{url('admin/fees')}}">
-                        <i class="ti-view-list-alt"></i>
+                        <i class="fa fa-list-alt"></i>
                         <p>Fees</p>
                     </a>
                 </li>
@@ -39,7 +39,7 @@
                 </li>
                 <li>
                     <a href="{{url('admin/manage-results')}}">
-                        <i class="ti-write"></i>
+                        <i class="fa fa-file-text"></i>
                         <p>Results</p>
                     </a>
                 </li>
@@ -62,20 +62,20 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('admin/parent/create')}}">
-                        <i class="ti-plus"></i>
-                        <p>Register Parent</p>
+                    <a href="{{url('admin/parent')}}">
+                        <i class="fa fa-archive"></i>
+                        <p>Parent Management</p>
                     </a>
                 </li>
                 <li>
                     <a href="{{url('admin/staff')}}">
-                        <i class="ti-pencil"></i>
-                        <p>Register Staff</p>
+                        <i class="fa fa-archive"></i>
+                        <p>Staff Management</p>
                     </a>
                 </li>
                 <li>
                     <a href="{{url('admin/student')}}">
-                        <i class="ti-plus"></i>
+                        <i class="fa fa-graduation-cap"></i>
                         <p>Register Student</p>
                     </a>
                 </li>

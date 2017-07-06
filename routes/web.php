@@ -21,9 +21,11 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('notice', 'noticeController');
 	Route::resource('add-admin', 'adminregisterController');
 	Route::resource('staff', 'staffregisterController');
+	Route::get('staff/{id}/delete', 'staffregisterController@destroy');
 	Route::resource('student', 'studentregisterController');
 	Route::resource('parent', 'parentController');
 	Route::get('parent/{id}/confirm', 'parentController@confirm');
+	Route::get('parent/{id}/delete', 'parentController@destroy');
 	Route::get('parent/{id}/deny', 'parentController@deny');
 	Route::resource('subjects', 'subjectcoreController');
 	Route::resource('core', 'subjectcoreController');
