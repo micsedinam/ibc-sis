@@ -115,7 +115,7 @@
         </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-7">
            <div class="card">
             <h4>
                <small> &nbsp; Hi {{Auth::user()->firstname}}! <br></small></h4>
@@ -124,6 +124,33 @@
                   
            </div>
         </div>
+        <div class="col-lg-3 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-inverse text-center">
+                                    <i class="fa fa-flash"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p><small>Parent's Request</small></p>
+                                    {{ $sp }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                            <hr>
+                            <div class="stats">
+                                Pending
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
+
        
 @stop

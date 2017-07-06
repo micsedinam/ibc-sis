@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Guardian;
+use Auth;
 
 class guardianController extends Controller
 {
@@ -23,6 +25,12 @@ class guardianController extends Controller
      */
     public function index()
     {
+        $guardian = Guardian::findOrFail(Auth::user()->id)->get()->first();
+        //dd($staff->password);
+        if (password_verify ( 'ghanaparent', $guardian->password )) {
+            //dd('uu');
+          flash('You have to change the default password on your account.')->warning();
+        }
         return view('guardian.index');
     }
 }

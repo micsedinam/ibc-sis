@@ -7,6 +7,8 @@ use App\Admin;
 use App\User;
 use App\Guardian;
 use App\Staff;
+use App\Studentparent;
+use Auth;
 
 class adminController extends Controller
 {
@@ -27,16 +29,27 @@ class adminController extends Controller
      */
     public function index()
     {
+         $add = Admin::findOrFail(Auth::user()->id)->get()->first();
+        //dd($staff->password);
+        if (password_verify ( 'ghanaadmin', $add->password )) {
+            //dd('uu');
+          flash('You have to change the default password on your account.')->warning();
+        }
+
         $staff = Staff::select('*')->get();
         $guard = Guardian::select('*')->get();
         $admin = Admin::select('*')->get();
         $student = User::select('*')->get();
+        $studentP = Studentparent::select('*')->where('state','pending')->get();
+
 
         $s = sizeof($staff);
         $g = sizeof($guard);
         $a = sizeof($admin);
         $u = sizeof($student);
+        $sp = sizeof($studentP);
+
         
-        return view('admin.index', compact('s','g','a','u'));
+        return view('admin.index', compact('s','g','a','u','sp'));
     }
 }
