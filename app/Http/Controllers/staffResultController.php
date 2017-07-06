@@ -189,7 +189,7 @@ class staffResultController extends Controller
         })->export ('csv');
     }
 
-    public function resultsrecords()
+    public function resultsrecords(Request $request)
     {
         $results = Results::select('id', 'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade')
                             ->where('staffid', '=', Auth::user()->staffid)
@@ -199,19 +199,52 @@ class staffResultController extends Controller
         $search = \Request::get('search');
         
         $result = Results::select('*')
-                    ->where('studentid', '=', '%'.$search.'%')->orderBy('id') ->paginate(3);
+                    ->where('studentid', '=', '%'.$search.'%')
+                    ->where('studentid', '=', '%'.$search.'%')
+                    ->get();
 
-        return view('staff.manage-results') ->with('results', $results) ->with('result', $result) ->with('search', $search) ;
-    }
+        //dd($request->all());
+        $myclass = $request['class'];
+        $mysubject = $request['subject'];
+        $myterm = $request['term'];
+        $myacademic = $request['academic'];
 
-    public function searchrecords()
-    {
+       // dd($myacademic, $myterm, $mysubject);
 
-        $search = \Request::get('search');
-        
-        $result = Results::select('*')
-                    ->where('studentid', '=', '%'.$search.'%')->orderBy('id') ->paginate(3);
+        $results = Results::select('id', 'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade')
+                            ->where('staffid', '=', Auth::user()->staffid)
+                            ->where('class', '=', $myclass)
+                            ->where('subject_title', '=', $mysubject)
+                            ->where('term', '=', $myterm)
+                            ->where('academicyear', '=', $myacademic)
+                            ->get();
+       //dd($results);                        
 
-        return view('staff.manage-results') ->with('results', $results) ->with('result', $result) ->with('search', $search) ;
+        $subject = Results::select('subject_title')
+            ->groupBy('subject_title')
+            ->get();
+
+        $term = Results::select('term')
+            ->groupBy('term')
+            ->get();
+
+        $academic = Results::select('academicyear')
+            ->groupBy('academicyear')
+            ->get();
+
+        $class = Results::select('class')
+            ->groupBy('class')
+            ->get();
+
+        return view('staff.manage-results') 
+        ->with('results', $results) 
+        ->with('subject', $subject) 
+        ->with('class', $class) 
+        ->with('term', $term)
+        ->with('academic', $academic) 
+        //->with('mysubject', $mysubject)
+        ;
+
+        return view('staff.manage-results') ->with('result', $result) ->with('search', $search) ;
     }
 }
