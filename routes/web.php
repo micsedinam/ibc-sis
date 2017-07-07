@@ -23,6 +23,9 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::resource('staff', 'staffregisterController');
 	Route::get('staff/{id}/delete', 'staffregisterController@destroy');
 	Route::resource('student', 'studentregisterController');
+	Route::get('manage-students', 'studentregisterController@subresults');
+	Route::get('studentList', 'studentregisterController@classList');
+	Route::post('studentList', 'studentregisterController@classList');
 	Route::resource('parent', 'parentController');
 	Route::get('parent/{id}/confirm', 'parentController@confirm');
 	Route::get('parent/{id}/delete', 'parentController@destroy');

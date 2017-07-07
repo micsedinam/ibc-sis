@@ -27,7 +27,7 @@ class studentRequest extends FormRequest
             'firstname'  => 'required|string', 
             'surname' => 'required|string', 
             'othername'  , 
-            'dob' => 'required|date', 
+            'dob' => 'required|date|before:13 years ago',
             'gender' => 'required', 
             'phone' => 'required|numeric|min:10', 
             'email' => 'required|unique:users', 

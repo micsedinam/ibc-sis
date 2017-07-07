@@ -69,14 +69,14 @@
 
                                                 <select id="group" class="form-control border-input" name="group" value="{{ old('group') }}" required>
                                                     <option>Select</option>
-                                                    <option>Business</option>
-                                                    <option>General Arts</option>
-                                                    <option>General Science</option>
-                                                    <option>Home Economics</option>
-                                                    <option>Visual Arts</option>
-                                                    <option>Staff</option>
-                                                    <option>Guardian</option>
-                                                    <option>General Notice</option>
+                                                    <option value="BUS" >Business</option>
+                                                    <option value="GA" >General Arts</option>
+                                                    <option value="SCI" >General Science</option>
+                                                    <option value="HE" >Home Economics</option>
+                                                    <option value="VA" >Visual Arts</option>
+                                                    <option value="Staff" >Staff</option>
+                                                    <option value="Guardian" >Guardian</option>
+                                                    <option value="General Notice">General Notice</option>
                                                 </select>
 
                                                  @if ($errors->has('group'))

@@ -66,7 +66,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group {{ $errors->has('dob') ? ' has-error' : '' }}">
                                                 <label for="dob">Date of Birth</label>
-                                                <input type="date" class="form-control border-input" name="dob" value="{{ old('dob') }}" required>
+                                                <input type="date" class="form-control border-input" placeholder="yyyy-mm-dd" name="dob" value="{{ old('dob') }}" required>
 
                                                  @if ($errors->has('dob'))
                                                     <span class="help-block">
@@ -92,7 +92,6 @@
                                                 <label for="gender">Gender</label>
 
                                                 <select id="gender" class="form-control border-input" name="gender" value="{{ old('gender') }}" required>
-                                                    <option>Select</option>
                                                     <option>Female</option>
                                                     <option>Male</option>
                                                 </select>
@@ -133,7 +132,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group {{ $errors->has('studentid') ? ' has-error' : '' }}" required>
                                                 <label for="studentid">Student ID</label>
-                                                <input type="text" class="form-control border-input" placeholder="GA1012013002" name="studentid" value="{{ old('studentid') }}">
+                                                <input type="number"  pattern=".{3}" onkeypress="validate()" class="form-control border-input" placeholder="Enter number on roll = 002" name="studentid" value="{{ old('studentid') }}">
 
                                                  @if ($errors->has('studentid'))
                                                     <span class="help-block">

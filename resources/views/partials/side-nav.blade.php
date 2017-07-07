@@ -75,8 +75,8 @@
                 </li>
                 <li>
                     <a href="{{url('admin/student')}}">
-                        <i class="fa fa-graduation-cap"></i>
-                        <p>Register Student</p>
+                        <i class="fa fa-archive"></i>
+                        <p>Student Management</p>
                     </a>
                 </li>
                 <li>
