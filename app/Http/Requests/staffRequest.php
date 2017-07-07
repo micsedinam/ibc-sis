@@ -27,7 +27,7 @@ class staffRequest extends FormRequest
             'firstname' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
             'othername' => 'string|max:255',
-            'dob' => 'required|string|date',
+            'dob' => 'required|string|date|before:20 years ago',
             'gender' => 'required|string|max:255',
             'phone' => 'required',
             'email' => 'required|string|email|max:255|unique:staff',

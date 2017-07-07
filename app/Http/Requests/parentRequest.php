@@ -27,7 +27,7 @@ class parentRequest extends FormRequest
             'firstname' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
             'othername' => 'string|max:255',
-            'dob' => 'required|date|max:255',
+            'dob' => 'required|date|before:35 years ago',
             'gender' => 'required|string|max:255',
             'email' => 'required|email|max:1000',
             'phone' => 'required',
