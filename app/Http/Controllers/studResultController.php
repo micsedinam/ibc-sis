@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Results;
 use Auth;
+use App\Setting;
+use App\Resultchange;
 
 class studResultController extends Controller
 {
@@ -15,20 +17,21 @@ class studResultController extends Controller
 
     public function showresult()
     {
-        //dd(all());
+        $setting = Setting::select('*')->latest()->get()->first();
+       // return $Setting;
 
-        $result = Results::select('*')
+       $result = Results::select('*')
+            ->where('academicyear','=',$setting->acyear)
+            ->where('term','=',$setting->term)
             ->where('studentid','=',Auth::user()->studentid)
-            ->latest()
             ->get()
         ;
+        $requested = Resultchange::select('id','state')
+            ->where('studid', Auth::user()->studentid)
+            ->get();
 
-        $results = Results::select('*')
-        	->where('studentid', '=', Auth::user()->studentid)
-        	->latest()
-        	->get()
-        	;	
+            // dd($requested);
 
-        return view ('student.results') ->with ('result', $result) ->with ('results', $results);
+        return view ('student.results', compact('requested')) ->with ('result', $result);
     }
 }

@@ -67,6 +67,7 @@ Route::group(['prefix' => 'admin'], function() {
 	//Route::get('grade-report', 'gradeReportController@index');
 	Route::get('grade-report', 'gradeReportController@subresults');
 	Route::post('report', 'gradeReportController@subresults');
+	Route::resource('approve','approveController');
 });
 
 
@@ -109,6 +110,10 @@ Route::group(['prefix' => 'staff'], function() {
 	Route::get('results/{result}/delete', 'staffResultController@destroy');
 	Route::resource('passreset', 'staffResetController');
 	Route::post('passresets', 'staffResetController@update');
+	Route::get('/result/change', 'staffRController@index');
+	Route::get('/result/change/{id}/edit', 'staffRController@edit');
+	Route::get('/result/change/{id}/deny', 'staffRController@deny');
+	Route::post('/result/change/{id}', 'staffRController@update');
 });
 
 
@@ -148,6 +153,9 @@ Route::get('results', 'studResultController@showresult');
 Route::resource('passreset', 'resetController');
 Route::post('passresets', 'resetController@update');
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('results/change/{id}', 'resultchangeController@edit');
+Route::post('results/change/{id}', 'resultchangeController@save');
 //All admin routes goes into this rout group!!!
 
 Auth::routes();

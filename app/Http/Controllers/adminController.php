@@ -8,6 +8,8 @@ use App\User;
 use App\Guardian;
 use App\Staff;
 use App\Studentparent;
+use App\Resultchange;
+use App\Resultupdate;
 use Auth;
 
 class adminController extends Controller
@@ -41,6 +43,7 @@ class adminController extends Controller
         $admin = Admin::select('*')->get();
         $student = User::select('*')->get();
         $studentP = Studentparent::select('*')->where('state','pending')->get();
+        $resultCh = Resultupdate::select()->where('state', 'pending')->get();
 
 
         $s = sizeof($staff);
@@ -48,8 +51,9 @@ class adminController extends Controller
         $a = sizeof($admin);
         $u = sizeof($student);
         $sp = sizeof($studentP);
+        $rc = sizeof($resultCh);
 
         
-        return view('admin.index', compact('s','g','a','u','sp'));
+        return view('admin.index', compact('s','g','a','u','sp','rc'));
     }
 }
