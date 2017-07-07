@@ -7,6 +7,10 @@ use App\Http\Requests\studentRequest;
 use App\Student;
 use App\User;
 use App\Programme;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Input;
+use Excel;
+use DB;
 
 class studentregisterController extends Controller
 {
@@ -59,11 +63,22 @@ class studentregisterController extends Controller
         // $short = substr($request['programme'],0,2);
         // dd($short);
         $clas = substr($request['class'],0,1);
-        $stud = substr($request['studentid'],0,2);
+        //$stud = substr($request['studentid'],0,2);
         //dd($stud);
+        $dt = Carbon::now();
+        $bt = Carbon::now()->addYear();
+        // set some things
+        $now = substr($dt->year, 1, 3);
+        //dd($now);
 
+        $next = substr($bt->year, 1, 3);
+        //dd($next);
+
+
+        $prifdate = $now.$next;
         switch ($clas) {
             case 'h':
+                $stud = 'HE';
                if ($stud !== 'HE') {
                   flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
                   return back();
@@ -72,6 +87,7 @@ class studentregisterController extends Controller
                }
                 break;
             case 'a':
+                $stud = 'GA';
              if ($stud !== 'GA') {
                   flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
                   return back();
@@ -80,6 +96,7 @@ class studentregisterController extends Controller
                 }
                  break;
             case 'v':
+                $stud = 'VA';
                 if ($stud !== 'VA') {
                   flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
                   return back();
@@ -88,6 +105,7 @@ class studentregisterController extends Controller
                }
                break;
             case 's':
+                $stud = 'SC';
                 if ($stud !== 'SC') {
                   flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
                   return back();
@@ -96,6 +114,7 @@ class studentregisterController extends Controller
                 }
                 break;            
             default:
+                $stud = 'BU';
             if ($stud !== 'BU') {
                   flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
                   return back();
@@ -118,7 +137,7 @@ class studentregisterController extends Controller
         $student->address = $request['address'];
         $student->programme = $programme;
         $student->class = $request['class'];
-        $student->studentid = $request['studentid'];
+        $student->studentid = $programme.$prifdate.$request['studentid'];
         $student->password = bcrypt('ghanastudent');
 
         $full = $student->firstname.' '.$student->surname.' '.$student->othername;
@@ -189,5 +208,71 @@ class studentregisterController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function subresults()
+    {
+
+        $class = User::select('class')
+            ->groupBy('class')
+            ->get();
+
+        return view('admin.manage-students')
+            ->with('class', $class)
+            ;
+    }
+
+    public function classList(Request $request)
+    {
+        //dd($request->all());
+        $myclass = $request['class'];
+        $myid = $request['academicyear'];
+
+        // Execute the query used to retrieve the data. In this example
+        // we're joining hypothetical users and payments tables, retrieving
+        // the payments table's primary key, the user's first and last name,
+        // the user's e-mail address, the amount paid, and the payment
+        // timestamp.
+
+        $classList = User::select('*')
+                            ->where('class', '=', $myclass)
+                            ->where('studentid', '=', $myid)
+                            ->select('studentid')
+                            ->get();
+        dd($classList);
+
+        // Initialize the array which will be passed into the Excel
+        // generator.
+        $classListArray = [];
+
+        // Define the Excel spreadsheet headers
+        $classListArray[] = ['studentid','term','academicyear','staffid', 'ca_score', 'exam_score', 'total', 'grade'];
+
+        // Convert each member of the returned collection into an array,
+        // and append it to the payments array.
+        foreach ($classList as $item) {
+            $classListArray[] = $item->toArray();
+        }
+
+        // Generate and return the spreadsheet
+        Excel::create('Edu Hub Class List Export', function($excel) use ($classListArray) {
+
+            // Set the spreadsheet title, creator, and description
+            $excel->setTitle('Class List');
+            $excel->setCreator('EDU HUB SIS')->setCompany('Notre Dame Girls SHS');
+            $excel->setDescription('Results Marksheet');
+
+            // Build the spreadsheet, passing in the payments array
+            $excel->sheet('sheet1', function($sheet) use ($classListArray) {
+                $sheet->fromArray($classListArray, null, 'A1', false, false);
+            });
+
+        })->download('csv');
+
+        return view('admin.manage-students')
+            ->with('myid', $myid)
+            ->with('myclass', $myclass)
+            ;
+
     }
 }

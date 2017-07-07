@@ -8,3 +8,20 @@ function validate(evt) {
         if(theEvent.preventDefault) theEvent.preventDefault();
       }
     }
+function validateDate(date){
+    var fourteenYearsAgo = moment().subtract(14, "years");
+    /*var dobi = document.forms["myForm"]["fname"].value;*/
+    var dob = moment(date);
+
+    if (!dob.isValid()) {
+        return "invalid date";
+    }
+    else if (fourteenYearsAgo.isAfter(birthday)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+//jsprint(validateDate);

@@ -11,6 +11,9 @@
     <!--  Notifications Plugin    -->
     <script src="{{url('assets/js/bootstrap-notify.js')}}"></script>
 
+    <!--  Moment Javascript    -->
+    <script src="{{url('assets/js/moment.js')}}"></script>
+
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script> 
 
@@ -46,3 +49,23 @@
     
             });
     </script> -->
+
+    <script type="text/javascript">
+        function validate(date){
+            var fourteenYearsAgo = moment().subtract(14, "years");
+            /*var dobi = document.forms["myForm"]["fname"].value;*/
+            var dob = moment(date).document.forms["myForm"]["dob"];
+
+            if (!dob.isValid()) {
+                return "invalid date";
+            }
+            else if (fourteenYearsAgo.isAfter(birthday)) {
+                return "success";
+            }
+            else {
+                return "sorry, enter valid date of birth";
+            }
+        }
+
+        jsprint(validate);
+    </script>
