@@ -27,7 +27,7 @@ class CreateStaffTable extends Migration
             $table->string('group');
             $table->string('staffid');
             $table->string('password');
-            $table->enum('status',['active','disable']);
+            $table->enum('status',['active','disabled']);
             $table->timestamps();
         });
     }
