@@ -58,13 +58,17 @@
                                                     <td class="text-center">{{ $element->total }}</td>
                                                     <td class="text-center">{{ $element->grade }}</td>
                                                     <td>
-                                                        @foreach ($requested as $item)
-                                                            @if ($item->id = $element->id)
-                                                                <p class="label label-warning"><small>Requested - </small>{{ strtoupper($item->state) }}</p>
-                                                            @else
-                                                                <a class="label label-primary" href="{{ url('results/change/'.$element->id) }}">Request change</a>
-                                                            @endif
-                                                        @endforeach
+                                                       @if (sizeof($requested) != 0))
+                                                            @foreach ($requested as $item)
+                                                                @if ($item->id = $element->id)
+                                                                    <p class="label label-warning"><small>Requested - </small>{{ strtoupper($item->state) }}</p>
+                                                                @else
+                                                                    <a class="label label-primary" href="{{ url('results/change/'.$element->id) }}">Request change</a>
+                                                                @endif
+                                                            @endforeach
+                                                        @else 
+                                                            <a class="label label-primary" href="{{ url('results/change/'.$element->id) }}">Request change</a>
+                                                       @endif
                                                         
                                                     </td>
                                                 </tr>
