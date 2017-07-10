@@ -236,10 +236,10 @@ class studentregisterController extends Controller
 
         $classList = User::select('*')
                             ->where('class', '=', $myclass)
-                            ->where('studentid', '=', $myid)
+                            ->where('studentid', '=', '%'.$myid.'%')
                             ->select('studentid')
                             ->get();
-        dd($classList);
+        //dd($classList);
 
         // Initialize the array which will be passed into the Excel
         // generator.
