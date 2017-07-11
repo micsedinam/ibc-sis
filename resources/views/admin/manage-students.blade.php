@@ -1,11 +1,11 @@
 @extends('layouts.layout')
 
 @section('page-name')
-    Manage Students
+    Generate Marksheet
 @endsection
 
 @section('title')
-    Admin | Manage Students
+    Admin | Generate Marksheet
 @endsection
 
 @section('sidebar')
@@ -17,12 +17,16 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-info">
-                <div class="panel-heading text-center text-warning"> <h3 class="text-warning text-center">EXPORT CLASS LIST</h3></div>
+                <div class="panel-heading text-center text-warning"> <h3 class="text-warning text-center">EXPORT MARKSHEET</h3></div>
                 <div class="panel-body">
-                    <div class="col-md-10">
+                    {{--<div class="col-md-10">
                         <a href="{{URL::to('admin/student')}}" class="btn btn-info"><i class="ti-plus"> Student</i></a>
+                    </div>--}}
+
+                    <div class=" col-md-8 col-md-offset-2">
+                        <a href="{{ url('admin/studentList') }}" type="submit" class="btn btn-info btn-fill btn-wd">Export Marksheet</a>
                     </div>
-                    <div class="col-md-12 col-md-offset-1">
+                    {{--<div class="col-md-12 col-md-offset-1">
                         <h6 class="box-title text-center">Sort By Class</h6>
                         <form role="form" method="POST" action="{{ url('admin/studentList') }}">
                             {{ csrf_field() }}
@@ -45,12 +49,12 @@
                                 </div>
 
                                 <div class=" col-md-4 text-center">
-                                    <button type="submit" class="btn btn-info btn-fill btn-wd">Export Class List</button>
+                                    <a href="{{ url('admin/studentList') }}" type="submit" class="btn btn-info btn-fill btn-wd">Export Marksheet</a>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
                         </form>
-                    </div>
+                    </div>--}}
                 </div>
             </div>
         </div>

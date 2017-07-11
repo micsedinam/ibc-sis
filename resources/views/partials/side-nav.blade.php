@@ -44,9 +44,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('admin/subjects')}}">
+                    <a href="{{url('admin/manage-students')}}">
                         <i class="ti-book"></i>
-                        <p>Subjects</p>
+                        <p>Generate Marksheet</p>
                     </a>
                 </li>
                 <li>
