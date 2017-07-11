@@ -36,7 +36,6 @@ class resultchangeController extends Controller
       $change->resultid = $result->id;
       $change->studid = $result->studentid;
       $change->staffid = $result->staffid;
-      $change->type = 'request';
       $change->request = $request['request'];
 
       if ($change->save()) {

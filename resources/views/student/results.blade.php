@@ -58,7 +58,7 @@
                                                     <td class="text-center">{{ $element->total }}</td>
                                                     <td class="text-center">{{ $element->grade }}</td>
                                                     <td>
-                                                       @if (sizeof($requested) != 0))
+                                                       @if (sizeof($requested) != 0)
                                                             @foreach ($requested as $item)
                                                                 @if ($item->id = $element->id)
                                                                     <p class="label label-warning"><small>Requested - </small>{{ strtoupper($item->state) }}</p>
