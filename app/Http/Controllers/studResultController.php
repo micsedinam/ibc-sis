@@ -26,11 +26,11 @@ class studResultController extends Controller
             ->where('studentid','=',Auth::user()->studentid)
             ->get()
         ;
-        $requested = Resultchange::select('id','state')
+        $requested = Resultchange::select('*')
             ->where('studid', Auth::user()->studentid)
             ->get();
 
-            // dd($requested);
+             // dd($requested);
 
         return view ('student.results', compact('requested')) ->with ('result', $result);
     }
