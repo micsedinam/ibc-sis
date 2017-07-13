@@ -82,62 +82,67 @@ class staffResultController extends Controller
      */
     public function update(Request $request, $result)
     {
-        $results = Results::findOrFail($result);
+         if (Auth::user()->status == 'disabled') {
+            flash("Oops, your accout is not active, contact the Administrator.")->error();
+            return back();
+          } else {
+            $results = Results::findOrFail($result);
 
-        //Calculate total
-        $total  = $request['ca_score'] + $request['exam_score'];
+            //Calculate total
+            $total  = $request['ca_score'] + $request['exam_score'];
 
-        //Calculate the grade
-        switch ($grade = $total) {
-            case $total >=80 && $total==100:
-               $grade =  "A1";
-                break;
-            case $total>=75:
-                $grade = "B2";
-                break;
-            case $total >=70:
-                $grade = "B3";
-                break;
-            case $total >=65:
-                $grade = "C4";
-                break;
-            case $total >=60:
-                $grade = "C5";
-                break;
-            case $total >=55:
-                $grade = "C6";
-                break;
-            case $total >=50:
-                $grade = "D7";
-                break;
-            case $total >=40:
-                $grade = "E8";
-                break;
-            case $total <39 && $total==0:
-                $grade = "F9";
-                break;
+            //Calculate the grade
+            switch ($grade = $total) {
+                case $total >=80 || $total==100:
+                   $grade =  "A1";
+                    break;
+                case $total>=75:
+                    $grade = "B2";
+                    break;
+                case $total >=70:
+                    $grade = "B3";
+                    break;
+                case $total >=65:
+                    $grade = "C4";
+                    break;
+                case $total >=60:
+                    $grade = "C5";
+                    break;
+                case $total >=55:
+                    $grade = "C6";
+                    break;
+                case $total >=50:
+                    $grade = "D7";
+                    break;
+                case $total >=40:
+                    $grade = "E8";
+                    break;
+                case $total <39 && $total==0:
+                    $grade = "F9";
+                    break;
+            }
+
+
+            $results->studentid = $request['studentid'];
+            $results->subject_title = $request['subject_title'];
+            $results->academicyear = $request['academicyear'];
+            $results->term = $request['term'];
+            $results->ca_score = $request['ca_score'];
+            $results->exam_score = $request['exam_score'];
+            $results->total = $total;
+            $results->grade = $grade;
+
+            //dd($results);
+            if ($results->update()){
+                flash($request['subject_title'].' successfully saved.')->success();
+                //echo 'saved';
+            }else{
+                flash($request['subject_title'].' not saved.')->error();
+                //echo 'Not saved';
+            }
+
+            return redirect()->back();
         }
-
-
-        $results->studentid = $request['studentid'];
-        $results->subject_title = $request['subject_title'];
-        $results->academicyear = $request['academicyear'];
-        $results->term = $request['term'];
-        $results->ca_score = $request['ca_score'];
-        $results->exam_score = $request['exam_score'];
-        $results->total = $total;
-        $results->grade = $grade;
-
-        //dd($results);
-        if ($results->update()){
-            flash($request['subject_title'].' successfully saved.')->success();
-            //echo 'saved';
-        }else{
-            flash($request['subject_title'].' not saved.')->error();
-            //echo 'Not saved';
-        }
-
-        return redirect()->back();
     }
 
     /**
@@ -148,103 +153,123 @@ class staffResultController extends Controller
      */
     public function destroy($result)
     {
-        $results = Results::findOrFail($result);
+         if (Auth::user()->status == 'disabled') {
+            flash("Oops, your accout is not active, contact the Administrator.")->error();
+            return back();
+          } else {
+            $results = Results::findOrFail($result);
 
-        if (Results::destroy($result)){
-            flash ('deleted successfully')->success();
-            //echo "saved";
-        }else{
-            flash ('failed to delete')->warning();
-            //echo "Not saved";
+            if (Results::destroy($result)){
+                flash ('deleted successfully')->success();
+                //echo "saved";
+            }else{
+                flash ('failed to delete')->warning();
+                //echo "Not saved";
+            }
+
+            return redirect()->back();
         }
-
-        return redirect()->back();
     }
 
     public function postImport()
     {
+         if (Auth::user()->status == 'disabled') {
+            flash("Oops, your accout is not active, contact the Administrator.")->error();
+            return back();
+          } else {
 
-        Excel::load(Input::file('results'),function ($reader){
-            $reader -> each (function ($sheet){
-                Results::firstOrCreate($sheet -> toArray());
-                flash(' Results uploaded successfully.') ->success();
+            Excel::load(Input::file('results'),function ($reader){
+                $reader -> each (function ($sheet){
+                    Results::firstOrCreate($sheet -> toArray());
+                    flash(' Results uploaded successfully.') ->success();
+                });
             });
-        });
 
-        // if($sheet->save()){
-        //     flash('Results uploaded successfully.') ->success();
-        // }else{
-        //     flash('Results not uploaded.') ->error();
-        // }
+            // if($sheet->save()){
+            //     flash('Results uploaded successfully.') ->success();
+            // }else{
+            //     flash('Results not uploaded.') ->error();
+            // }
 
-        return redirect() ->to('staff/manage-results');
+            return redirect() ->to('staff/manage-results');
+        }
     }
 
     public function getExport(){
-        $results = Results::all();
-        Excel::create('Edu Hub Student Results Export', function ($excel) use ($results){
-            $excel -> sheet ('sheet 1', function ($sheet) use ($results){
-                $sheet -> fromArray($results);
-            });
-        })->export ('csv');
+         if (Auth::user()->status == 'disabled') {
+            flash("Oops, your accout is not active, contact the Administrator.")->error();
+            return back();
+          } else {
+            $results = Results::all();
+            Excel::create('Edu Hub Student Results Export', function ($excel) use ($results){
+                $excel -> sheet ('sheet 1', function ($sheet) use ($results){
+                    $sheet -> fromArray($results);
+                });
+            })->export ('csv');
+        }
     }
 
     public function resultsrecords(Request $request)
     {
-        $results = Results::select('id', 'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade')
-                            ->where('staffid', '=', Auth::user()->staffid)
-                            ->latest()
-                            ->get();
+         if (Auth::user()->status == 'disabled') {
+            flash("Oops, your accout is not active, contact the Administrator.")->error();
+            return back();
+          } else {
+            $results = Results::select('id', 'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade')
+                                ->where('staffid', '=', Auth::user()->staffid)
+                                ->latest()
+                                ->get();
 
-        $search = \Request::get('search');
-        
-        $result = Results::select('*')
-                    ->where('studentid', '=', '%'.$search.'%')
-                    ->where('studentid', '=', '%'.$search.'%')
-                    ->get();
+            $search = \Request::get('search');
+            
+            $result = Results::select('*')
+                        ->where('studentid', '=', '%'.$search.'%')
+                        ->where('studentid', '=', '%'.$search.'%')
+                        ->get();
 
-        //dd($request->all());
-        $myclass = $request['class'];
-        $mysubject = $request['subject'];
-        $myterm = $request['term'];
-        $myacademic = $request['academic'];
+            //dd($request->all());
+            $myclass = $request['class'];
+            $mysubject = $request['subject'];
+            $myterm = $request['term'];
+            $myacademic = $request['academic'];
 
-       // dd($myacademic, $myterm, $mysubject);
+           // dd($myacademic, $myterm, $mysubject);
 
-        $results = Results::select('id', 'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade')
-                            ->where('staffid', '=', Auth::user()->staffid)
-                            ->where('class', '=', $myclass)
-                            ->where('subject_title', '=', $mysubject)
-                            ->where('term', '=', $myterm)
-                            ->where('academicyear', '=', $myacademic)
-                            ->get();
-       //dd($results);                        
+            $results = Results::select('id', 'studentid', 'subject_title', 'academicyear', 'term', 'ca_score', 'exam_score', 'total', 'grade')
+                                ->where('staffid', '=', Auth::user()->staffid)
+                                ->where('class', '=', $myclass)
+                                ->where('subject_title', '=', $mysubject)
+                                ->where('term', '=', $myterm)
+                                ->where('academicyear', '=', $myacademic)
+                                ->get();
+           //dd($results);                        
 
-        $subject = Results::select('subject_title')
-            ->groupBy('subject_title')
-            ->get();
+            $subject = Results::select('subject_title')
+                ->groupBy('subject_title')
+                ->get();
 
-        $term = Results::select('term')
-            ->groupBy('term')
-            ->get();
+            $term = Results::select('term')
+                ->groupBy('term')
+                ->get();
 
-        $academic = Results::select('academicyear')
-            ->groupBy('academicyear')
-            ->get();
+            $academic = Results::select('academicyear')
+                ->groupBy('academicyear')
+                ->get();
 
-        $class = Results::select('class')
-            ->groupBy('class')
-            ->get();
+            $class = Results::select('class')
+                ->groupBy('class')
+                ->get();
 
-        return view('staff.manage-results') 
-        ->with('results', $results) 
-        ->with('subject', $subject) 
-        ->with('class', $class) 
-        ->with('term', $term)
-        ->with('academic', $academic) 
-        //->with('mysubject', $mysubject)
-        ;
+            return view('staff.manage-results') 
+            ->with('results', $results) 
+            ->with('subject', $subject) 
+            ->with('class', $class) 
+            ->with('term', $term)
+            ->with('academic', $academic) 
+            //->with('mysubject', $mysubject)
+            ;
 
-        return view('staff.manage-results') ->with('result', $result) ->with('search', $search) ;
+            return view('staff.manage-results') ->with('result', $result) ->with('search', $search) ;
     }
+}
 }
