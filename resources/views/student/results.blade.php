@@ -57,8 +57,13 @@
                                                     <td class="text-center">{{ $element->exam_score }}</td>
                                                     <td class="text-center">{{ $element->total }}</td>
                                                     <td class="text-center">{{ $element->grade }}</td>
+<<<<<<< HEAD
                                                    {{-- <td>
                                                        @if (sizeof($requested) != 0))
+=======
+                                                    <td>
+                                                       @if (sizeof($requested) != 0)
+>>>>>>> e16572036eb1762e25d29af08fb1b0f8f88a79e1
                                                             @foreach ($requested as $item)
                                                                 @if ($item->id = $element->id)
                                                                     <p class="label label-warning"><small>Requested - </small>{{ strtoupper($item->state) }}</p>

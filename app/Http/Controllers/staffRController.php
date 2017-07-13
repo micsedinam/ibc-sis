@@ -34,30 +34,33 @@ class staffRController extends Controller
 
     public function edit($id)
     {
-    	$result = Resultchange::select('*')
+    	$result = Resultchange::select('*', \DB::raw('resultchanges.id as changeid'))
     		->join('results', 'results.id', '=', 'resultchanges.resultid')
     		->where('resultchanges.id', $id)
     		->get()
     		->first();
-    	    //dd($results);
+    	    // dd($result);
     	 $response = Resultupdate::select('*')
     	 	->where('staffid', Auth::user()->staffid)
     	 	->where('requestid', $id)
     	 	->get()
     	 	->first()
     	 	;
-
+      //dd($response);
     	return view('staff.resultschange-edit', compact('result', 'response'));
     }
 
     public function deny($id)
     {
+      //dd($id);
     	$deny = Resultchange::findOrFail($id);
     	$deny->state = 'denied';
 
     	if ($deny->update()) {
     		flash("Change Request denied.")->info();
-    	}
+    	}else{
+        flash("Oops, somthing went wrong.")->error();
+      }
     	return redirect('staff/result/change');
     }
 

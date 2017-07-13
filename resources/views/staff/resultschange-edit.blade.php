@@ -25,16 +25,16 @@
             </blockquote>
             <hr>
             @if ($result->state === 'pending')
-                <p class="text-center"><a href="{{ url('staff/result/change/'.$result->id.'/deny') }}" class=" text-center label label-warning">Decline changes</a></p>
+                <p class="text-center"><a href="{{ url('staff/result/change/'.$result->changeid.'/deny') }}" class=" text-center label label-warning">Decline changes</a></p>
             @else
                 <p class="text-center"> <span class=" label label-info">{{ $result->state }}</span></p>
             @endif
         </div>
     </div>
     @if ($result->state === 'pending')
-         <div class="col-md-6">
+     <div class="col-md-6">
          <div class="card">
-             <form action="{{ url('staff/result/change/'.$result->id) }}" method="POST">
+             <form action="{{ url('staff/result/change/'.$result->changeid) }}" method="POST">
              {{ csrf_field() }}
                  {{method_field('PATCH')}}
                  <div class="form-group{{ $errors->has('ca_score') ? ' has-error' : '' }}">
@@ -75,7 +75,11 @@
         <div class="col-md-6">
             <div class="card">
                 <h4 class="text-center">Admins response</h4>
-                <p class="text-center"> <span class="label label-info">{{ $response->state }}</span></p>
+                @if ($response != null || sizeof($response) != 0)
+                    <p class="text-center"> <span class="label label-info">{{ $response->state }}</span></p>
+                @else
+                    <p class="text-center"> <span class="label label-info">No response needed</span></p>
+                @endif
             </div>
         </div>  
      @endif 
