@@ -147,31 +147,31 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-sm-6">
-            <div class="card">
-                <div class="content">
-                    <div class="row">
-                        <div class="col-xs-5">
-                            <div class="icon-big icon-inverse text-center">
-                                <i class="fa fa-pencil"></i>
-                            </div>
-                        </div>
-                        <div class="col-xs-7">
-                            <div class="numbers">
-                                <p><small>Results change request</small></p>
-                                {{ $rc }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer">
-                        <hr>
-                        <div class="stats">
-                           <p><a href="{{ route('approve.index') }}" class="label label-default"><i class="fa fa-eye"></i> View</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        {{--<div class="col-lg-4 col-sm-6">--}}
+            {{--<div class="card">--}}
+                {{--<div class="content">--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col-xs-5">--}}
+                            {{--<div class="icon-big icon-inverse text-center">--}}
+                                {{--<i class="fa fa-pencil"></i>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-xs-7">--}}
+                            {{--<div class="numbers">--}}
+                                {{--<p><small>Results change request</small></p>--}}
+                                {{--{{ $rc }}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="footer">--}}
+                        {{--<hr>--}}
+                        {{--<div class="stats">--}}
+                           {{--<p><a href="{{ route('approve.index') }}" class="label label-default"><i class="fa fa-eye"></i> View</a></p>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
         </div>
     </div>       
 @stop

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-07-07 17:09:27
+Date: 2017-07-10 06:29:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -204,7 +204,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of migrations
@@ -230,6 +230,9 @@ INSERT INTO `migrations` VALUES ('46', '2017_06_16_111933_create_programmes_tabl
 INSERT INTO `migrations` VALUES ('48', '2017_06_16_111824_create_results_table', '14');
 INSERT INTO `migrations` VALUES ('51', '2017_06_16_111318_create_staff_table', '15');
 INSERT INTO `migrations` VALUES ('52', '2017_07_07_003331_create_csv_data_table', '16');
+INSERT INTO `migrations` VALUES ('53', '2017_07_07_003100_create_resultchanges_table', '17');
+INSERT INTO `migrations` VALUES ('54', '2017_07_07_011436_create_settings_table', '17');
+INSERT INTO `migrations` VALUES ('55', '2017_07_07_105729_create_resultupdates_table', '17');
 
 -- ----------------------------
 -- Table structure for `notices`
@@ -295,6 +298,28 @@ INSERT INTO `programmes` VALUES ('4', 'HE', 'Home Economics', '2017-07-05 10:27:
 INSERT INTO `programmes` VALUES ('5', 'VA', 'Visual Arts', '2017-07-05 10:29:02', '2017-07-05 10:29:02');
 
 -- ----------------------------
+-- Table structure for `resultchanges`
+-- ----------------------------
+DROP TABLE IF EXISTS `resultchanges`;
+CREATE TABLE `resultchanges` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `resultid` int(10) unsigned NOT NULL,
+  `studid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `staffid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `state` enum('pending','accepted','updated','denied') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('request','update') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `request` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `resultchanges_resultid_index` (`resultid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Records of resultchanges
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `results`
 -- ----------------------------
 DROP TABLE IF EXISTS `results`;
@@ -313,32 +338,58 @@ CREATE TABLE `results` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of results
 -- ----------------------------
-INSERT INTO `results` VALUES ('31', 'SCI013014002', 'Science', '2017/2018', 'second', '30', '40', '70', 'B3', 'NDS10023', 'General Science', '2017-07-06 17:07:47', '2017-07-06 17:07:47');
-INSERT INTO `results` VALUES ('32', 'SCI013014003', 'Science', '2017/2018', 'second', '15', '20', '35', 'F9', 'NDS10023', 'General Science', '2017-07-06 17:07:48', '2017-07-06 17:07:48');
-INSERT INTO `results` VALUES ('33', 'SCI013014004', 'Science', '2017/2018', 'second', '30', '50', '80', 'A1', 'NDS10023', 'General Science', '2017-07-06 17:07:48', '2017-07-06 17:07:48');
-INSERT INTO `results` VALUES ('34', 'SCI013014005', 'Science', '2017/2018', 'second', '15', '45', '60', 'C5', 'NDS10023', 'General Science', '2017-07-06 17:07:48', '2017-07-06 17:07:48');
-INSERT INTO `results` VALUES ('35', 'SCI013014006', 'Science', '2017/2018', 'second', '30', '50', '80', 'A1', 'NDS10023', 'General Science', '2017-07-06 17:07:48', '2017-07-06 17:07:48');
-INSERT INTO `results` VALUES ('36', 'SCI013014007', 'Science', '2017/2018', 'second', '30', '60', '90', 'A1', 'NDS10023', 'General Science', '2017-07-06 17:07:48', '2017-07-06 17:07:48');
-INSERT INTO `results` VALUES ('37', 'SCI013014008', 'Science', '2017/2018', 'second', '12', '25', '37', 'F9', 'NDS10023', 'General Science', '2017-07-06 17:07:48', '2017-07-06 17:07:48');
-INSERT INTO `results` VALUES ('38', 'SCI013014009', 'Science', '2017/2018', 'second', '25', '25', '50', 'D7', 'NDS10023', 'General Science', '2017-07-06 17:07:48', '2017-07-06 17:07:48');
-INSERT INTO `results` VALUES ('39', 'SCI013014010', 'Science', '2017/2018', 'second', '19', '60', '79', 'B2', 'NDS10023', 'General Science', '2017-07-06 17:07:48', '2017-07-06 17:07:48');
-INSERT INTO `results` VALUES ('40', 'SCI013014011', 'Science', '2017/2018', 'second', '10', '40', '50', 'D7', 'NDS10023', 'General Science', '2017-07-06 17:07:48', '2017-07-06 17:07:48');
-INSERT INTO `results` VALUES ('41', 'SCI013014012', 'Science', '2017/2018', 'second', '20', '36', '56', 'C6', 'NDS10023', 'General Science', '2017-07-06 17:07:48', '2017-07-06 17:07:48');
-INSERT INTO `results` VALUES ('42', 'SCI013014013', 'Science', '2017/2018', 'second', '20', '45', '65', 'C4', 'NDS10023', 'General Science', '2017-07-06 17:07:49', '2017-07-06 17:07:49');
-INSERT INTO `results` VALUES ('43', 'SCI013014014', 'Science', '2017/2018', 'second', '19', '55', '74', 'B3', 'NDS10023', 'General Science', '2017-07-06 17:07:49', '2017-07-06 17:07:49');
-INSERT INTO `results` VALUES ('44', 'SCI013014015', 'Science', '2017/2018', 'second', '10', '52', '62', 'C5', 'NDS10023', 'General Science', '2017-07-06 17:07:49', '2017-07-06 17:07:49');
-INSERT INTO `results` VALUES ('45', 'SCI013014016', 'Science', '2017/2018', 'second', '14', '39', '53', 'D7', 'NDS10023', 'General Science', '2017-07-06 17:07:49', '2017-07-06 17:07:49');
-INSERT INTO `results` VALUES ('46', 'SCI013014017', 'Science', '2017/2018', 'second', '23', '68', '91', 'A1', 'NDS10023', 'General Science', '2017-07-06 17:07:49', '2017-07-06 17:07:49');
-INSERT INTO `results` VALUES ('47', 'SCI013014018', 'Science', '2017/2018', 'second', '25', '69', '94', 'A1', 'NDS10023', 'General Science', '2017-07-06 17:07:49', '2017-07-06 17:07:49');
-INSERT INTO `results` VALUES ('48', 'SCI013014019', 'Science', '2017/2018', 'second', '15', '37', '52', 'D7', 'NDS10023', 'General Science', '2017-07-06 17:07:49', '2017-07-06 17:07:49');
-INSERT INTO `results` VALUES ('49', 'SCI012013002', 'Science', '2017/2018', 'second', '20', '22', '42', 'E8', 'NDS10023', 'General Science', '2017-07-06 17:45:21', '2017-07-06 17:50:43');
-INSERT INTO `results` VALUES ('50', 'SCI012013002', 'Maths', '2017/2018', 'second', '15', '20', '35', 'F9', 'NDS09025', 'General Science', '2017-07-06 17:45:21', '2017-07-06 17:45:21');
-INSERT INTO `results` VALUES ('51', 'SCI012013002', 'English', '2017/2018', 'second', '30', '50', '80', 'A1', 'NDS09025', 'General Science', '2017-07-06 17:45:21', '2017-07-06 17:45:21');
+INSERT INTO `results` VALUES ('53', 'SCI012013002', 'Science', '2017/2018', 'second', '30', '40', '70', 'B2', 'NDS10023', 'General Science', '2017-07-09 15:51:26', '2017-07-09 15:51:26');
+INSERT INTO `results` VALUES ('54', 'SCI012013002', 'English', '2017/2018', 'second', '15', '45', '60', 'C4', 'NDS10023', 'General Science', '2017-07-09 15:51:26', '2017-07-09 15:51:26');
+INSERT INTO `results` VALUES ('55', 'SCI012013002', 'Maths', '2017/2018', 'second', '20', '65', '85', 'A1', 'NDS10023', 'General Science', '2017-07-09 15:51:26', '2017-07-09 15:51:26');
+
+-- ----------------------------
+-- Table structure for `resultupdates`
+-- ----------------------------
+DROP TABLE IF EXISTS `resultupdates`;
+CREATE TABLE `resultupdates` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `studid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `staffid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `resultid` int(10) unsigned NOT NULL,
+  `requestid` int(10) unsigned NOT NULL,
+  `ca_score` int(11) NOT NULL,
+  `exam_score` int(11) NOT NULL,
+  `state` enum('pending','approved','denied') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `resultupdates_resultid_index` (`resultid`),
+  KEY `resultupdates_requestid_index` (`requestid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Records of resultupdates
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `settings`
+-- ----------------------------
+DROP TABLE IF EXISTS `settings`;
+CREATE TABLE `settings` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `admin_id` int(10) unsigned NOT NULL,
+  `acyear` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `term` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `settings_admin_id_index` (`admin_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Records of settings
+-- ----------------------------
+INSERT INTO `settings` VALUES ('1', '1', '2017/2018', 'second', '2017-07-09 15:35:49', '2017-07-09 15:35:57');
 
 -- ----------------------------
 -- Table structure for `staff`
@@ -358,7 +409,7 @@ CREATE TABLE `staff` (
   `group` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `staffid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('active','disable') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('active','disabled') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -367,8 +418,8 @@ CREATE TABLE `staff` (
 -- ----------------------------
 -- Records of staff
 -- ----------------------------
-INSERT INTO `staff` VALUES ('1', 'Bismark', 'Osei', null, '1987-07-16', 'Male', '0241586789', 'bosei@yahoo.com', 'Berekum', 'Degree', 'Staff', 'NDS09025', '$2y$10$XwKN9qYMrk6aIlSbCyRBRO2aZ39Xcr8fnsiE43IgfE2B067BAymJS', 'active', '2017-07-06 15:10:35', '2017-07-06 15:13:33');
-INSERT INTO `staff` VALUES ('2', 'Winfred', 'Krah', 'Kwasi', '1990-03-01', 'Male', '0241652478', 'kwinfred@gmail.com', 'Abesim', 'Diploma', 'Staff', 'NDS10023', '$2y$10$IoQXnWwF/BNF5PbaAHJuwedrB9WYwKbedEffdq7fMNuCEp0mQma0u', 'active', '2017-07-06 17:04:12', '2017-07-06 17:04:12');
+INSERT INTO `staff` VALUES ('1', 'Bismark', 'Osei', null, '1987-07-16', 'Male', '0241586789', 'bosei@yahoo.com', 'Berekum', 'Degree', 'Staff', 'NDS09025', '$2y$10$XwKN9qYMrk6aIlSbCyRBRO2aZ39Xcr8fnsiE43IgfE2B067BAymJS', 'disabled', '2017-07-06 15:10:35', '2017-07-10 06:26:34');
+INSERT INTO `staff` VALUES ('2', 'Winfred', 'Krah', 'Kwasi', '1990-03-01', 'Male', '0241652478', 'kwinfred@gmail.com', 'Abesim', 'Diploma', 'Staff', 'NDS10023', '$2y$10$IoQXnWwF/BNF5PbaAHJuwedrB9WYwKbedEffdq7fMNuCEp0mQma0u', 'active', '2017-07-06 17:04:12', '2017-07-10 01:53:32');
 
 -- ----------------------------
 -- Table structure for `staff_subjects`
@@ -531,7 +582,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`),
   UNIQUE KEY `users_studentid_unique` (`studentid`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of users
@@ -541,3 +592,4 @@ INSERT INTO `users` VALUES ('4', 'Joel', 'Inkoom', null, '1993-06-15', 'Male', '
 INSERT INTO `users` VALUES ('8', 'Daniella', 'Smith', null, '2003-04-01', 'Female', '0233254796', 'dsmith@eduhub.org', 'Suhum', 'BUS014015003', 'BUS', '$2y$10$/pqMJ3YRweyABo0hGxPJ1eSZtrVHKfPJBUKEVdwfq/e.Sr16j9cO.', null, '2017-07-07 09:12:56', '2017-07-07 09:12:56', 'b1');
 INSERT INTO `users` VALUES ('9', 'Winfred', 'Dzankah', null, '2004-01-01', 'Male', '0241568574', 'wdzankah@admin.com', 'Suhum', 'HE012013005', 'HE', '$2y$10$et.4tBfQeFlxclXiHDKkl.l6lhQhkXM6Ue13bKBuUy6LcuuD8A0Ke', null, '2017-07-07 09:24:40', '2017-07-07 09:24:40', 'h1');
 INSERT INTO `users` VALUES ('11', 'Michelle', 'Lamptey', null, '1994-11-30', 'Female', '0548660704', 'mlamptey@gmail.com', 'Oduom', 'BUS017018010', 'BUS', '$2y$10$lc6ZIDWAJCY7rYM3EOAOaenSM1H5coEsvYk15qRgWwUAVMHQhqcqa', null, '2017-07-07 11:28:21', '2017-07-07 11:28:21', 'b1');
+INSERT INTO `users` VALUES ('12', 'Desmond', 'McCarthy', null, '2004-02-12', 'Female', '0203210789', 'dm@gmail.com', 'Bakoniaba', 'BUS017018002', 'BUS', '$2y$10$2E8viWRqtG7RngqeATckoegAvO2gJhjB3EvLRnMRfbE3e1.nEegOW', null, '2017-07-07 17:22:49', '2017-07-07 17:22:49', 'b1');

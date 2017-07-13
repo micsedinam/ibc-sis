@@ -159,6 +159,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('results/change/{id}', 'resultchangeController@edit');
 Route::post('results/change/{id}', 'resultchangeController@save');
-//All admin routes goes into this rout group!!!
+
 
 Auth::routes();

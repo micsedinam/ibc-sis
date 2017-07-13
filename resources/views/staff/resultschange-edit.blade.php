@@ -36,8 +36,9 @@
          <div class="card">
              <form action="{{ url('staff/result/change/'.$result->id) }}" method="POST">
              {{ csrf_field() }}
+                 {{method_field('PATCH')}}
                  <div class="form-group{{ $errors->has('ca_score') ? ' has-error' : '' }}">
-                    <label for="ca_score" class="col-md-4 control-label">CLass Score</label>
+                    <label for="ca_score" class="col-md-4 control-label">Class Score</label>
 
                     <div class="col-md-6">
                         <input id="ca_score" type="text" onkeypress="validate()" class="form-control" name="ca_score" value="{{ $result->ca_score }}" required autofocus>

@@ -45,7 +45,7 @@
                                                 <th>EXAM SCORE</th>
                                                 <th>TOTAL</th>
                                                 <th>GRADE</th>
-                                                <th>Action</th>
+                                                {{--<th>Action</th>--}}
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -57,7 +57,7 @@
                                                     <td class="text-center">{{ $element->exam_score }}</td>
                                                     <td class="text-center">{{ $element->total }}</td>
                                                     <td class="text-center">{{ $element->grade }}</td>
-                                                    <td>
+                                                   {{-- <td>
                                                        @if (sizeof($requested) != 0))
                                                             @foreach ($requested as $item)
                                                                 @if ($item->id = $element->id)
@@ -66,11 +66,11 @@
                                                                     <a class="label label-primary" href="{{ url('results/change/'.$element->id) }}">Request change</a>
                                                                 @endif
                                                             @endforeach
-                                                        @else 
+                                                        @else
                                                             <a class="label label-primary" href="{{ url('results/change/'.$element->id) }}">Request change</a>
                                                        @endif
-                                                        
-                                                    </td>
+
+                                                    </td>--}}
                                                 </tr>
                                             @endforeach
                                             </tbody>
