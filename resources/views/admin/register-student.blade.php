@@ -14,7 +14,7 @@
 
 @section('content')
 
-        <div class="col-lg-8  col-lg-offset-2 col-md-7">
+        <div class="col-lg-10  col-lg-offset-1 col-md-7">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title text-center">Register Student</h4>
@@ -39,7 +39,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group {{ $errors->has('surname') ? ' has-error' : '' }}">
                                                 <label for="surname">Last Name</label>
-                                                <input type="text" class="form-control border-input" placeholder="Smith" name="surname" value="{{ old('post_category') }}">
+                                                <input type="text" class="form-control border-input" placeholder="Smith" name="surname" value="{{ old('surname') }}" required>
 
                                                  @if ($errors->has('surname'))
                                                     <span class="help-block">
@@ -66,7 +66,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group {{ $errors->has('dob') ? ' has-error' : '' }}">
                                                 <label for="dob">Date of Birth</label>
-                                                <input type="date" class="form-control border-input" name="dob" value="{{ old('dob') }}" required>
+                                                <input type="date" class="form-control border-input" placeholder="yyyy-mm-dd" name="dob" value="{{ old('dob') }}" required>
 
                                                  @if ($errors->has('dob'))
                                                     <span class="help-block">
@@ -92,7 +92,6 @@
                                                 <label for="gender">Gender</label>
 
                                                 <select id="gender" class="form-control border-input" name="gender" value="{{ old('gender') }}" required>
-                                                    <option>Select</option>
                                                     <option>Female</option>
                                                     <option>Male</option>
                                                 </select>
@@ -109,7 +108,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
                                                 <label for="address">Residential Address</label>
-                                                <input type="text" class="form-control border-input" placeholder="Fiapre" name="address" value="{{ old('address') }}">
+                                                <input type="text" class="form-control border-input" placeholder="Fiapre" name="address" value="{{ old('address') }}" required>
 
                                                  @if ($errors->has('address'))
                                                     <span class="help-block">
@@ -121,7 +120,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
                                                 <label for="phone">Phone</label>
-                                                <input type="number" class="form-control border-input" placeholder="0240000000" name="phone" value="{{ old('phone') }}">
+                                                <input type="number" class="form-control border-input" placeholder="0240000000" name="phone" value="{{ old('phone') }}" required>
 
                                                  @if ($errors->has('phone'))
                                                     <span class="help-block">
@@ -131,9 +130,9 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group {{ $errors->has('studentid') ? ' has-error' : '' }}">
+                                            <div class="form-group {{ $errors->has('studentid') ? ' has-error' : '' }}" required>
                                                 <label for="studentid">Student ID</label>
-                                                <input type="text" class="form-control border-input" placeholder="GA1012013002" name="studentid" value="{{ old('studentid') }}">
+                                                <input type="number"  pattern=".{3}" onkeypress="validate()" class="form-control border-input" placeholder="Enter number on roll = 002" name="studentid" value="{{ old('studentid') }}">
 
                                                  @if ($errors->has('studentid'))
                                                     <span class="help-block">
@@ -144,22 +143,27 @@
                                         </div>
                                     </div>
                                      <div class="row">
+                                        
                                         <div class="col-md-6 col-md-offset-3">
-                                            <div class="form-group {{ $errors->has('programme') ? ' has-error' : '' }}">
-                                                <label for="programme">Programme</label>
+                                            <div class="form-group {{ $errors->has('class') ? ' has-error' : '' }}" required>
+                                                <label for="class">Class</label>
 
-                                                <select id="programme" class="form-control border-input" name="programme" value="{{ old('programme') }}" required>
-                                                    <option>Select</option>
-                                                    <option>Business</option>
-                                                    <option>General Arts</option>
-                                                    <option>General Science</option>
-                                                    <option>Home Economics</option>
-                                                    <option>Visual Arts</option>
+                                                <select id="class" class="form-control border-input" name="class" value="{{ old('class') }}" required>
+                                                    <option value="rtp">Radio and Television Presentation</option>
+                                                    <option value="tp">Television Presentation</option>
+                                                    <option value="rp">Radio Presentation</option>
+                                                    <option value="tpfa">Television Presentation and Film Acting</option>
+                                                    <option value="vch">Video Editing and Camera Handling</option>
+                                                    <option value="ved">Video Editing</option>
+                                                    <option value="ch">Camera Handling</option>
+                                                    <option value="vse">Video Editing and Sound Engineering</option>
+                                                    <option value="av">Animation and Video Editing</option>
+                                                    <option value="fda">Film Directing and Acting</option>
                                                 </select>
 
-                                                 @if ($errors->has('programme'))
+                                                 @if ($errors->has('class'))
                                                     <span class="help-block">
-                                                            <strong>{{ $errors->first('programme') }}</strong>
+                                                            <strong>{{ $errors->first('class') }}</strong>
                                                     </span>
                                                 @endif
                                             </div>

@@ -1,47 +1,31 @@
 @extends('layouts.layout')
 
 @section('page-name')
-    Manage Results 
+    Grade Report
 @endsection
 
 @section('title')
-    Staff | Manage Results 
+    Admin | Grade Report
 @endsection
 
 @section('sidebar')
-    @include('partials.staff-nav')
+    @include('partials.side-nav')
 @stop
 
-@section('content')
+@section('content') 
 
     	<div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-info">
-                        <div class="panel-heading text-center text-warning"> <h3 class="text-warning text-center">STUDENT RESULTS LIST</h3></div>
+                        <div class="panel-heading text-center text-warning"> <h3 class="text-warning text-center">CLASS PERFORMANCE ON SUBJECT</h3></div>
                         <div class="panel-body">
                             <div class="col-md-12">
-                            	<a href="{{url('staff/results')}}" class="btn btn-success"><i class="ti-angle-double-left"></i>Back</a>
-                                {{-- <a href="{{URL::to('resultdeleteAll')}}" class="btn btn-danger">Delete All</a> --}}
-			                    {{--<a href="{{URL::to('getImport')}}" class="btn btn-success">Import</a>--}}
-			                    {{-- <a href="{{URL::to('admin/resultsExport')}}" class="btn btn-info">Export to Excel</a> --}}
-
-                                {{-- <div class="col-md-3 pull-right">
-                                    <form method="GET" action="{{url('staff/search')}}" class="pull-right" role="search">
-                                        <div class="input-group custom-search-form">
-                                            <input type="text" name="search" class="form-control" placeholder="search here...">
-                                            <span class="input-group-btn">
-                                                <button type="submit" class="btn btn-info btn-fill">
-                                                    <i class="ti-search"></i>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div> --}}
+                                <a href="{{url('admin/subject-results')}}" class="btn btn-success"><i class="ti-angle-double-left"></i>Back</a>
+			                    {{-- <a href="{{URL::to('admin/resultsExport')}}" class="btn btn-info">Generate Grade Report</a> --}}
                             </div> 
-
                             <div class="col-md-12">
-                                <h6 class="box-title text-center">Sort By Student ID - Subject - Term - Academic Year</h6>
-                                    <form role="form" method="POST" action="{{ url('staff/search') }}">
+                                <h6 class="box-title text-center">Sort By Class - Subject - Term - Academic Year</h6>
+                                    <form role="form" method="POST" action="{{ url('admin/report') }}">
                                     {{ csrf_field() }}
 
                                      <div class="row">
@@ -87,45 +71,48 @@
                                         </div>
                                         
                                         <div class=" col-md-2 text-center">
-                                            <button type="submit" class="btn btn-info btn-fill btn-wd">Sort Results</button>
+                                            <button type="submit" class="btn btn-info btn-fill btn-wd">Generate Report</button>
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
 
-                            <div class="col-md-12 col-lg-12 col-sm-12">
-                                <div class="white-box">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-warning">
+                                        <div class="panel-heading text-center text-success"> <h3 class="text-success text-center">CLASS PERFORMANCE REPORT</h3></div>
+                                        <div class="panel-body">
+                                            {{-- @foreach($report as $item)
+                                               <h6 class="text-center text-info">{{$item->gradecount.' students scored '.$item->grade}} </h6> <br> <hr>
+                                            @endforeach --}}
 
-                                   
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-				                            	<tr>
-                                                    <th>#</th>
-                                                    <th>STUDENT ID</th>
-                                                    <th>SUBJECT TITLE</th>
-                                                    <th>CONTINUOUS ASSESSMENT</th>
-                                                    <th>EXAM SCORE</th>
-                                                    <th>TOTAL</th>
-                                                    <th>GRADE</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                @foreach($results as $element)
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $element->studentid }}</td>
-                                                    <td>{{ $element->subject_title }}</td>
-                                                    <td class="text-center">{{ $element->ca_score }}</td>
-                                                    <td class="text-center">{{ $element->exam_score }}</td>
-                                                    <td class="text-center">{{ $element->total }}</td>
-                                                    <td class="text-center">{{ $element->grade }}</td>
-				                                </tr>
-				                            	@endforeach
+                                            <div class="col-md-12 col-lg-12 col-sm-12">
+                                                <div class="card">
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th class="text-success">NO. STUDENTS</th>
+                                                                    <th class="text-info">GRADE ATTAINED</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                @foreach($report as $item)
+                                                                <tr>
+                                                                    <td>{{ $loop->iteration }}</td>
+                                                                    <td>{{ $item->gradecount }}</td>
+                                                                    <td>{{ $item->grade }}</td>
+                                                                </tr>
+                                                                @endforeach
 
-				                            </tbody>
-                                        </table>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

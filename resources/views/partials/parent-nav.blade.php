@@ -26,6 +26,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('parent.ward') }}">
+                        <i class="ti-user"></i>
+                        <p>Ward</p>
+                    </a>
+                </li>
+                <li>
                     <a href="{{url('guardian/notice')}}">
                         <i class="ti-clipboard"></i>
                         <p>Notice</p>

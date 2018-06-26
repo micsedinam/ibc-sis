@@ -16,6 +16,7 @@
 </head>
 <body>
     <div id="app">
+        @include('flash::message')
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -30,7 +31,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Edu-HUB') }}
                     </a>
                 </div>
 
@@ -72,10 +73,16 @@
             </div>
         </nav>
 
+        @include('flash::message')
+
         @yield('content')
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        $('#flash-overlay-modal').modal();
+        setTimeout("$('.alert').delay(3000).slideUp(400)",400);
+    </script>
 </body>
 </html>

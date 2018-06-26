@@ -19,71 +19,67 @@
 
 @section('content')
 
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <div class="panel panel-default">
-                        <div class="panel-heading text-center text-warning">My Result</div>
-                        <div class="panel-body">
-                            <div class="col-md-12">
-                                <h5 class="text-center">{{ Auth::user()->firstname }} {{ Auth::user()->surname }}</h5>
-                                <h5 class="text-center">Student ID:@if(Auth::check()) {{Auth::user()->studentid}} @endif</h5>
-                                <h5 class="text-center">Programme:@if(Auth::check()) {{Auth::user()->programme}} @endif</h5>
-                            </div>
-                            {{--  <div class="row text-center">
-                                <div class="col-md-6">
-                                    <h6 class="box-title text-info text-center">ACADEMIC YEAR: {{$results->academicyear}}</h6>
-                                    <h6 class="box-title text-danger text-center">TERM: {{$results->term}}</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <h6 class="box-title text-danger text-center">TERM: {{$result->term}}</h6>
-                                </div>
-                            </div> --}}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center text-warning">MY RESULTS</div>
+                <div class="panel-body">
 
-                            <div class="col-md-12 col-lg-12 col-sm-12">
-                                <div class="white-box">
+                    <div class="col-md-12">
+                        <h5 class="text-center">{{ Auth::user()->firstname.' '.Auth::user()->surname.' '.Auth::user()->othername }}</h5>
+                        <h5 class="text-center">Student ID:@if(Auth::check()) {{strtoupper(Auth::user()->studentid) }} @endif</h5>
+                        <h5 class="text-center">Programme:@if(Auth::check()) {{Auth::user()->programme}} @endif</h5>
+                    </div>
 
-                                    <h3 class="text-warning text-center">STUDENT RESULTS</h3>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>SUBJECT TITLE</th>
-                                    <th>CONTINUOUS ASSESSMENT</th>
-                                    <th>EXAM SCORE</th>
-                                    <th>TOTAL</th>
-                                    <th>GRADE</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($result as $element)
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="white-box">
+
+                            <h3 class="text-warning text-center">STUDENT RESULTS</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $element->subject_title }}</td>
-                                        <td class="text-center">{{ $element->ca_score }}</td>
-                                        <td class="text-center">{{ $element->exam_score }}</td>
-                                        <td class="text-center">{{ $element->total }}</td>
-                                        <td class="text-center">{{ $element->grade }}</td>
+                                        <th>#</th>
+                                        <th>SUBJECT TITLE</th>
+                                        <th>CONTINUOUS ASSESSMENT</th>
+                                        <th>EXAM SCORE</th>
+                                        <th>TOTAL</th>
+                                        <th>GRADE</th>
+                                        <th>ACTION</th>
                                     </tr>
-                                @endforeach
+                                    </thead>
+                                    <tbody>
+                                    @foreach($result as $element)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $element->subject_title }}</td>
+                                            <td class="text-center">{{ $element->ca_score }}</td>
+                                            <td class="text-center">{{ $element->exam_score }}</td>
+                                            <td class="text-center">{{ $element->total }}</td>
+                                            <td class="text-center">{{ $element->grade }}</td>
+                                            <td>
+                                                @if (sizeof($requested) != 0)
+                                                    @foreach ($requested as $item)
+                                                        @if ($item->resultid == $element->id)
+                                                            <p class="label label-warning"><small>Requested - </small>{{ strtoupper($item->state) }}</p>
+                                                        @else
+                                                            <a class="label label-primary" href="{{ url('results/change/'.$element->id) }}">Request change</a>
+                                                        @endif
+                                                    @endforeach
+                                                @else
+                                                    <a class="label label-primary" href="{{ url('results/change/'.$element->id) }}">Request change</a>
+                                                @endif
 
-                                {{-- <tr>
-                                    <td>WEIGHTED AVERAGE</td>
-                                    <td>{{$wgt}}</td>
-                                    <td></td>
-                                    <td>SEMESTER GPA:</td>
-                                    <td>{{$sgpa}}</td>
-                                    <td></td>
-                                    <td>CUMMULATIVE GPA:</td>
-                                    <td>{{$cgpa}}</td>
-                                </tr> --}}
-                                </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 @stop

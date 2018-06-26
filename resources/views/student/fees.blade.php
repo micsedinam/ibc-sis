@@ -22,14 +22,14 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="panel panel-default">
-                        <div class="panel-heading text-center text-warning">My Bill</div>
+                        <div class="panel-heading text-center text-warning">MY BILL</div>
                         <div class="panel-body">
                             <div class="col-md-12">
                                 <h5 class="text-center">{{ Auth::user()->firstname }} {{ Auth::user()->surname }}</h5>
                                 <h5 class="text-center">Student ID:@if(Auth::check()) {{Auth::user()->studentid}} @endif</h5>
                                 <h5 class="text-center">Programme:@if(Auth::check()) {{Auth::user()->programme}} @endif</h5>
                             </div>
-                             <div class="row text-center">
+                            <div class="row text-center">
                                 <div class="col-md-6">
                                     <h6 class="box-title text-info text-center">ACADEMIC YEAR: {{$bill->academicyear}}</h6>
                                 </div>

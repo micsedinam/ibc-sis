@@ -1,6 +1,6 @@
 <!--   Core JS Files   -->
-    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="{{ url('assets/js/jquery-1.10.2.js') }}" type="text/javascript"></script>
+	<script src="{{ url('assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
 
 	<!--  Checkbox, Radio & Switch Plugins -->
 	<script src="{{url('assets/js/bootstrap-checkbox-radio.js')}}"></script>
@@ -10,6 +10,9 @@
 
     <!--  Notifications Plugin    -->
     <script src="{{url('assets/js/bootstrap-notify.js')}}"></script>
+
+    <!--  Moment Javascript    -->
+    <script src="{{url('assets/js/moment.js')}}"></script>
 
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script> 
@@ -28,6 +31,7 @@
     
     <!--  methods for manipulating the wizard and the validation -->
     <script src="{{url('assets/js/wizard.js')}}"></script>
+    <script src="{{url('js/custom.js')}}"></script>
 
 	<!-- <script type="text/javascript">
             $(document).ready(function(){
@@ -45,3 +49,23 @@
     
             });
     </script> -->
+
+    <script type="text/javascript">
+        function validate(date){
+            var fourteenYearsAgo = moment().subtract(14, "years");
+            /*var dobi = document.forms["myForm"]["fname"].value;*/
+            var dob = moment(date).document.forms["myForm"]["dob"];
+
+            if (!dob.isValid()) {
+                return "invalid date";
+            }
+            else if (fourteenYearsAgo.isAfter(birthday)) {
+                return "success";
+            }
+            else {
+                return "sorry, enter valid date of birth";
+            }
+        }
+
+        jsprint(validate);
+    </script>

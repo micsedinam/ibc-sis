@@ -8,7 +8,7 @@
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="{{url('admin')}}" class="simple-text">
-                    EDU-HUB NODASS
+                    EDU-HUB IBC
                 </a>
             </div>
 
@@ -27,7 +27,7 @@
                 </li> --}}
                 <li>
                     <a href="{{url('admin/fees')}}">
-                        <i class="ti-view-list-alt"></i>
+                        <i class="fa fa-list-alt"></i>
                         <p>Fees</p>
                     </a>
                 </li>
@@ -38,39 +38,51 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('admin/results')}}">
-                        <i class="ti-write"></i>
+                    <a href="{{url('admin/manage-results')}}">
+                        <i class="fa fa-file-text"></i>
                         <p>Results</p>
                     </a>
                 </li>
-                {{-- <li>
-                    <a href="{{url('admin/subjects')}}">
-                        <i class="ti-blackboard"></i>
-                        <p>Subjects</p>
+                <li>
+                    <a href="{{url('admin/manage-students')}}">
+                        <i class="ti-book"></i>
+                        <p>Generate Marksheet</p>
                     </a>
-                </li> --}}
+                </li>
+                <li>
+                    <a href="{{url('admin/programme-manage')}}">
+                        <i class="ti-blackboard"></i>
+                        <p>Programmes</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url('admin/course-manage')}}">
+                        <i class="ti-pencil"></i>
+                        <p>Courses</p>
+                    </a>
+                </li>
                 <li>
                     <a href="{{url('admin/add-admin')}}">
-                        <i class="ti-pencil"></i>
-                        <p>Register Admin</p>
+                        <i class="fa fa-archive"></i>
+                        <p>Admin Management</p>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="{{url('admin/parent')}}">
-                        <i class="ti-plus"></i>
-                        <p>Register Parent</p>
+                        <i class="fa fa-archive"></i>
+                        <p>Parent Management</p>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="{{url('admin/staff')}}">
-                        <i class="ti-pencil"></i>
-                        <p>Register Staff</p>
+                        <i class="fa fa-archive"></i>
+                        <p>Staff Management</p>
                     </a>
                 </li>
                 <li>
                     <a href="{{url('admin/student')}}">
-                        <i class="ti-plus"></i>
-                        <p>Register Student</p>
+                        <i class="fa fa-archive"></i>
+                        <p>Student Management</p>
                     </a>
                 </li>
                 <li>

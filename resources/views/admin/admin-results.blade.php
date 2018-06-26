@@ -1,47 +1,31 @@
 @extends('layouts.layout')
 
 @section('page-name')
-    Manage Results 
+    Manage Subject Results 
 @endsection
 
 @section('title')
-    Staff | Manage Results 
+    Admin | Manage Subject Results 
 @endsection
 
 @section('sidebar')
-    @include('partials.staff-nav')
+    @include('partials.side-nav')
 @stop
 
-@section('content')
+@section('content') 
 
     	<div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-info">
-                        <div class="panel-heading text-center text-warning"> <h3 class="text-warning text-center">STUDENT RESULTS LIST</h3></div>
+                        <div class="panel-heading text-center text-warning"> <h3 class="text-warning text-center">SUBJECT RESULTS LIST</h3></div>
                         <div class="panel-body">
                             <div class="col-md-12">
-                            	<a href="{{url('staff/results')}}" class="btn btn-success"><i class="ti-angle-double-left"></i>Back</a>
-                                {{-- <a href="{{URL::to('resultdeleteAll')}}" class="btn btn-danger">Delete All</a> --}}
-			                    {{--<a href="{{URL::to('getImport')}}" class="btn btn-success">Import</a>--}}
-			                    {{-- <a href="{{URL::to('admin/resultsExport')}}" class="btn btn-info">Export to Excel</a> --}}
-
-                                {{-- <div class="col-md-3 pull-right">
-                                    <form method="GET" action="{{url('staff/search')}}" class="pull-right" role="search">
-                                        <div class="input-group custom-search-form">
-                                            <input type="text" name="search" class="form-control" placeholder="search here...">
-                                            <span class="input-group-btn">
-                                                <button type="submit" class="btn btn-info btn-fill">
-                                                    <i class="ti-search"></i>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div> --}}
+                                <a href="{{url('admin/manage-results')}}" class="btn btn-success"><i class="ti-angle-double-left"></i>Back</a>
+			                    <a href="{{URL::to('admin/grade-report')}}" class="btn btn-info">Generate Grade Report</a>
                             </div> 
-
                             <div class="col-md-12">
-                                <h6 class="box-title text-center">Sort By Student ID - Subject - Term - Academic Year</h6>
-                                    <form role="form" method="POST" action="{{ url('staff/search') }}">
+                                <h6 class="box-title text-center">Sort By Class - Subject - Term - Academic Year</h6>
+                                    <form role="form" method="POST" action="{{ url('admin/subject-result') }}">
                                     {{ csrf_field() }}
 
                                      <div class="row">
@@ -109,6 +93,7 @@
                                                     <th>EXAM SCORE</th>
                                                     <th>TOTAL</th>
                                                     <th>GRADE</th>
+                                                    <th>MANAGE</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -121,6 +106,10 @@
                                                     <td class="text-center">{{ $element->exam_score }}</td>
                                                     <td class="text-center">{{ $element->total }}</td>
                                                     <td class="text-center">{{ $element->grade }}</td>
+				                                    <td>
+				                                        <a href="{{url('admin/results/'.$element->id.'/edit')}}"><i class="ti-pencil-alt"></i></a>
+				                                        <a href="{{url('admin/results/'.$element->id.'/delete')}}"><i class="ti-close text-danger"></i></a>
+				                                    </td>
 				                                </tr>
 				                            	@endforeach
 
