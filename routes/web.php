@@ -17,8 +17,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/login', 'Auth\adminLoginController@showLoginForm')->name('admin.adminLogin');
     Route::post('/login', 'Auth\adminLoginController@login')->name('admin.adminLogin');
     Route::post('/logout', 'Auth\adminLoginController@logout')->name('admin.adminLogout');
+    Route::get('/programme/{id}/delete', 'ProgrammeController@destroy');
     //
-    Route::resource('notice', 'noticeController');
+  Route::resource('notice', 'noticeController');
 	Route::resource('add-admin', 'adminregisterController');
 	Route::resource('staff', 'staffregisterController');
 	Route::get('staff/{id}/delete', 'staffregisterController@destroy');
@@ -26,10 +27,12 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('manage-students', 'studentregisterController@subresults');
 	Route::get('studentList', 'studentregisterController@classList');
 	Route::post('studentList', 'studentregisterController@classList');
-	Route::resource('parent', 'parentController');
-	Route::get('parent/{id}/confirm', 'parentController@confirm');
-	Route::get('parent/{id}/delete', 'parentController@destroy');
-	Route::get('parent/{id}/deny', 'parentController@deny');
+	
+	// Route::resource('parent', 'parentController');
+	// Route::get('parent/{id}/confirm', 'parentController@confirm');
+	// Route::get('parent/{id}/delete', 'parentController@destroy');
+	// Route::get('parent/{id}/deny', 'parentController@deny');
+
 	Route::resource('subjects', 'subjectcoreController');
 	Route::resource('core', 'subjectcoreController');
 	Route::resource('elective', 'electiveSubjectController');
@@ -67,6 +70,9 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::resource('programme', 'programmeController');
 	Route::get('programme-manage', 'programmeController@manage');
 	Route::post('programme/{programme}', 'programmeController@update');
+	Route::resource('course', 'courseController');
+	Route::get('course-manage', 'courseController@manage');
+	Route::post('course/{course}', 'courseController@update');
 	//Route::get('grade-report', 'gradeReportController@index');
 	Route::get('grade-report', 'gradeReportController@subresults');
 	Route::post('report', 'gradeReportController@subresults');
@@ -96,7 +102,7 @@ Route::group(['prefix' => 'guardian'], function() {
 });
 
 
-// Saff panel routes
+// Staff panel routes
 Route::group(['prefix' => 'staff'], function() {
     Route::get('/','staffController@index')->name('staff.index');
     Route::get('/login', 'Auth\staffLoginController@showLoginForm')->name('staff.staffLogin');
@@ -142,7 +148,7 @@ Route::get('fileentry/get/{filename}', [
 	'as' => 'getentry',
 	'uses' => 'FileEntryController@get'
 ]);
-Route::post('fileentry/add',[ 
+Route::post('fileentry/add',[
     'as' => 'addentry',
     'uses' => 'FileEntryController@add'
  ]);
@@ -160,5 +166,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('results/change/{id}', 'resultchangeController@edit');
 Route::post('results/change/{id}', 'resultchangeController@save');
 
+Route::get('importItem', 'tryController@importItem');
+Route::post('handleImport', 'tryController@handleImport');
+
+Route::resource('/course-register', 'courseRegController');
+Route::get('/course-register', 'courseRegController@courselist');
+Route::post('/mycourses', 'courseRegController@courselist');
+Route::post('/mycourse', 'courseRegController@store');
 
 Auth::routes();

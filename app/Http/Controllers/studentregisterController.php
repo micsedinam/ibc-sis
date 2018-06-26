@@ -62,64 +62,109 @@ class studentregisterController extends Controller
 
         // $short = substr($request['programme'],0,2);
         // dd($short);
-        $clas = substr($request['class'],0,1);
+        $clas = substr($request['class'],0,4);
         //$stud = substr($request['studentid'],0,2);
-        //dd($stud);
+        //dd($clas);
         $dt = Carbon::now();
-        $bt = Carbon::now()->addYear();
+        //$bt = Carbon::now()->addYear();
         // set some things
-        $now = substr($dt->year, 1, 3);
+        $now = substr($dt->year, 2, 3);
         //dd($now);
 
-        $next = substr($bt->year, 1, 3);
+        //$next = substr($bt->year, 1, 3);
         //dd($next);
 
 
-        $prifdate = $now.$next;
+        $prifdate = $now;
         switch ($clas) {
-            case 'h':
-                $stud = 'HE';
-               if ($stud !== 'HE') {
+            case 'rtp':
+                $stud = 'RTP';
+               if ($stud !== 'RTP') {
                   flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
                   return back();
                }else{
-                $programme = 'HE';
+                $programme = 'RTP';
                }
                 break;
-            case 'a':
-                $stud = 'GA';
-             if ($stud !== 'GA') {
+            case 'tp':
+                $stud = 'TP';
+             if ($stud !== 'TP') {
                   flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
                   return back();
                }else{
-                    $programme = 'GA';
+                    $programme = 'TP';
                 }
                  break;
-            case 'v':
-                $stud = 'VA';
-                if ($stud !== 'VA') {
+            case 'rp':
+                $stud = 'RP';
+                if ($stud !== 'RP') {
                   flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
                   return back();
                }else{
-                   $programme = 'VA';
+                   $programme = 'RP';
                }
                break;
-            case 's':
-                $stud = 'SC';
-                if ($stud !== 'SC') {
+            case 'tpfa':
+                $stud = 'TPACT';
+                if ($stud !== 'TPACT') {
                   flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
                   return back();
                }else{
-                    $programme = 'SCI';
+                    $programme = 'TPACT';
+                }
+                break;
+            case 'vch':
+                $stud = 'VEDCH';
+                if ($stud !== 'VEDCH') {
+                  flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
+                  return back();
+               }else{
+                    $programme = 'VEDCH';
+                }
+                break;
+            case 'ved':
+                $stud = 'VED';
+                if ($stud !== 'VED') {
+                  flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
+                  return back();
+               }else{
+                    $programme = 'VED';
+                }
+                break;
+            case 'ch':
+                $stud = 'CH';
+                if ($stud !== 'CH') {
+                  flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
+                  return back();
+               }else{
+                    $programme = 'CH';
+                }
+                break; 
+            case 'vse':
+                $stud = 'VEDSE';
+                if ($stud !== 'VEDSE') {
+                  flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
+                  return back();
+               }else{
+                    $programme = 'VEDSE';
+                }
+                break;
+            case 'av':
+                $stud = 'ADCVED';
+                if ($stud !== 'ADCVED') {
+                  flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
+                  return back();
+               }else{
+                    $programme = 'ADCVED';
                 }
                 break;            
             default:
-                $stud = 'BU';
-            if ($stud !== 'BU') {
+                $stud = 'FDACT';
+            if ($stud !== 'FDACT') {
                   flash('Ooops, Student Id '.$request['studentid'].' cannot be in the selected class.')->error();
                   return back();
                }else{
-                    $programme = 'BUS';
+                    $programme = 'FDACT';
                 }
                 break;
         }

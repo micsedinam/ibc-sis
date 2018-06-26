@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>EDU-HUB NODASS</title>
+        <title>EDU-HUB</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -80,12 +80,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    WELCOME TO EDU-HUB NODASS
+                    WELCOME TO EDU-HUB
                 </div>
 
                 <div class="links">
                     <a href="{{url('admin/')}} ">Admin Login</a>
-                    <a href="{{url('guardian/')}} ">Guardian Login</a>
+                   {{--  <a href="{{url('guardian/')}} ">Guardian Login</a> --}}
                     <a href="{{url('staff/')}} ">Staff Login</a>
                     <a href="{{url('home/')}} ">Student Login</a>
                 </div>

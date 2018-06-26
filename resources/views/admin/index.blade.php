@@ -15,7 +15,7 @@
 @section('content')
 
     <div class="row">
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-4 col-sm-6">
                 <div class="card">
                     <div class="content">
                         <div class="row">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-4 col-sm-6">
                 <div class="card">
                     <div class="content">
                         <div class="row">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
+            <!-- <div class="col-lg-3 col-sm-6">
                 <div class="card">
                     <div class="content">
                         <div class="row">
@@ -81,13 +81,13 @@
                         </div>
                         <div class="footer">
                             <hr>
-                            <div class="stats">Registeted
+                            <div class="stats">Registered
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
+            </div> -->
+            <div class="col-lg-4 col-sm-6">
                 <div class="card">
                     <div class="content">
                         <div class="row">
@@ -115,14 +115,14 @@
         </div>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-6">
            <div class="card">
                 <h4>
                 <small> &nbsp; Hi {{Auth::user()->firstname}}! <br></small></h4>
                 <h5> &nbsp; You are logged in as <strong>ADMIN</strong>!</h5>
            </div>
         </div>
-        <div class="col-lg-3 col-sm-6">
+        <!-- <div class="col-lg-3 col-sm-6">
             <div class="card">
                 <div class="content">
                     <div class="row">
@@ -146,32 +146,32 @@
                     </div>
                 </div>
             </div>
-        </div>
-        {{--<div class="col-lg-4 col-sm-6">--}}
-            {{--<div class="card">--}}
-                {{--<div class="content">--}}
-                    {{--<div class="row">--}}
-                        {{--<div class="col-xs-5">--}}
-                            {{--<div class="icon-big icon-inverse text-center">--}}
-                                {{--<i class="fa fa-pencil"></i>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="col-xs-7">--}}
-                            {{--<div class="numbers">--}}
-                                {{--<p><small>Results change request</small></p>--}}
-                                {{--{{ $rc }}--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="footer">--}}
-                        {{--<hr>--}}
-                        {{--<div class="stats">--}}
-                           {{--<p><a href="{{ route('approve.index') }}" class="label label-default"><i class="fa fa-eye"></i> View</a></p>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
+        </div> -->
+        <div class="col-lg-6 col-sm-6">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-inverse text-center">
+                                <i class="fa fa-pencil"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p><small>Results change request</small></p>
+                                {{ $rc }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                        <hr>
+                        <div class="stats">
+                           <p><a href="{{ route('approve.index') }}" class="label label-default"><i class="fa fa-eye"></i> View</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>       
 @stop

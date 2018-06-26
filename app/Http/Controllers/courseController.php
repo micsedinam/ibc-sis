@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Programme;
+use App\Course;
 
-class programmeController extends Controller
+class courseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class programmeController extends Controller
     
     public function index()
     {
-        return view('admin.programme');
+        return view ('admin.course');
     }
 
     /**
@@ -40,22 +40,24 @@ class programmeController extends Controller
      */
     public function store(Request $request)
     {
-
         //dd($request->all());
-        $programme = new Programme();
+        $course = new Course();
 
-        $programme->code = $request['code'];
-        $programme->name = $request['name'];
+        $course->c_code = $request['c_code'];
+        $course->c_name = $request['c_name'];
+        $course->credit_hrs= $request['credit_hrs'];
+        $course->semester = $request['semester'];
+        $course->level = $request['level'];
 
-        //dd($programme);
+        //dd($course);
 
-        if($programme->save()){
+        if($course->save()){
             flash($request['name']. ' Successfully Saved.')->success();
         }else{
             flash($request['name']. ' Not Saved.')->error();
         }
 
-        return redirect('/admin/programme-manage');
+        return redirect('/admin/course-manage');
     }
 
     /**
@@ -75,11 +77,11 @@ class programmeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($programme)
+    public function edit($course)
     {
-        $prog = Programme::findOrFail($programme);
+        $course = Course::findOrFail($course);
 
-        return view('admin.prog-edit') ->with('prog', $prog);
+        return view('admin.course-edit') ->with('course', $course);
     }
 
     /**
@@ -89,17 +91,20 @@ class programmeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $programme)
+    public function update(Request $request, $course)
     {
         //dd($request->all());
-        $prog = Programme::findOrFail($programme);
+        $course = Course::findOrFail($course);
 
-        $prog->code = $request['code'];
-        $prog->name = $request['name'];
+        $course->c_code = $request['c_code'];
+        $course->c_name = $request['c_name'];
+        $course->credit_hrs= $request['credit_hrs'];
+        $course->semester = $request['semester'];
+        $course->year = $request['level'];
 
-        //dd($programme);
+        //dd($course);
 
-        if($prog->update()){
+        if($course->update()){
             flash($request['name']. ' Successfully Saved.')->success();
         }else{
             flash($request['name']. ' Not Saved.')->error();
@@ -116,22 +121,13 @@ class programmeController extends Controller
      */
     public function destroy($id)
     {
-        $programme = Programme::findOrFail($id);
-
-
-        if ($programme->delete()) {
-            flash($programme->name.' has been removed.')->success();
-        }else{
-            flash('Oops, something went wrong')->error();
-        }
-
-        return redirect()->back();
+        //
     }
 
     public function manage()
     {
-        $prog = Programme::select('id', 'code', 'name')->get();
+        $course = Course::select('id', 'c_code', 'c_name', 'credit_hrs')->get();
 
-        return view('admin.manage-prog') ->with('prog', $prog);
+        return view('admin.manage-course') ->with('course', $course);
     }
 }

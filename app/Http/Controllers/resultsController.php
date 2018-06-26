@@ -122,31 +122,28 @@ class resultsController extends Controller
         //Calculate the grade
         switch ($grade = $total) {
             case $total >=80 && $total==100:
-               $grade =  "A1";
+               $grade =  "A";
                 break;
             case $total>=75:
-                $grade = "B2";
+                $grade = "B+";
                 break;
             case $total >=70:
-                $grade = "B3";
+                $grade = "B";
                 break;
             case $total >=65:
-                $grade = "C4";
+                $grade = "C+";
                 break;
             case $total >=60:
-                $grade = "C5";
+                $grade = "C";
                 break;
             case $total >=55:
-                $grade = "C6";
+                $grade = "D+";
                 break;
             case $total >=50:
-                $grade = "D7";
+                $grade = "D";
                 break;
-            case $total >=40:
-                $grade = "E8";
-                break;
-            case $total <39 && $total==0:
-                $grade = "F9";
+            default:
+                $grade = "E";
                 break;
         }
 

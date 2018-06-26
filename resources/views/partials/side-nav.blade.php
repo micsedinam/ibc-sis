@@ -8,7 +8,7 @@
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="{{url('admin')}}" class="simple-text">
-                    EDU-HUB NODASS
+                    EDU-HUB IBC
                 </a>
             </div>
 
@@ -56,17 +56,23 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('admin/add-admin')}}">
+                    <a href="{{url('admin/course-manage')}}">
                         <i class="ti-pencil"></i>
-                        <p>Register Admin</p>
+                        <p>Courses</p>
                     </a>
                 </li>
                 <li>
+                    <a href="{{url('admin/add-admin')}}">
+                        <i class="fa fa-archive"></i>
+                        <p>Admin Management</p>
+                    </a>
+                </li>
+                <!-- <li>
                     <a href="{{url('admin/parent')}}">
                         <i class="fa fa-archive"></i>
                         <p>Parent Management</p>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="{{url('admin/staff')}}">
                         <i class="fa fa-archive"></i>

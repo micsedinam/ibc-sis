@@ -149,13 +149,16 @@
                                                 <label for="class">Class</label>
 
                                                 <select id="class" class="form-control border-input" name="class" value="{{ old('class') }}" required>
-                                                    <option value="b1">Business</option>
-                                                    <option value="a1">General Arts 1</option>
-                                                    <option value="a2">General Arts 2</option>
-                                                    <option value="a3">General Arts 3</option>
-                                                    <option value="s1">General Science</option>
-                                                    <option value="h1">Home Economics</option>
-                                                    <option value="v1">Visual Arts</option>
+                                                    <option value="rtp">Radio and Television Presentation</option>
+                                                    <option value="tp">Television Presentation</option>
+                                                    <option value="rp">Radio Presentation</option>
+                                                    <option value="tpfa">Television Presentation and Film Acting</option>
+                                                    <option value="vch">Video Editing and Camera Handling</option>
+                                                    <option value="ved">Video Editing</option>
+                                                    <option value="ch">Camera Handling</option>
+                                                    <option value="vse">Video Editing and Sound Engineering</option>
+                                                    <option value="av">Animation and Video Editing</option>
+                                                    <option value="fda">Film Directing and Acting</option>
                                                 </select>
 
                                                  @if ($errors->has('class'))

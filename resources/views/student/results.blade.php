@@ -22,11 +22,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading text-center text-warning">My Result</div>
+                <div class="panel-heading text-center text-warning">MY RESULTS</div>
                 <div class="panel-body">
 
                     <div class="col-md-12">
-                        <h5 class="text-center">{{ Auth::user()->firstname.' '.Auth::user()->surname }}</h5>
+                        <h5 class="text-center">{{ Auth::user()->firstname.' '.Auth::user()->surname.' '.Auth::user()->othername }}</h5>
                         <h5 class="text-center">Student ID:@if(Auth::check()) {{strtoupper(Auth::user()->studentid) }} @endif</h5>
                         <h5 class="text-center">Programme:@if(Auth::check()) {{Auth::user()->programme}} @endif</h5>
                     </div>
@@ -45,7 +45,7 @@
                                         <th>EXAM SCORE</th>
                                         <th>TOTAL</th>
                                         <th>GRADE</th>
-                                        <th>Action</th>
+                                        <th>ACTION</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -60,7 +60,7 @@
                                             <td>
                                                 @if (sizeof($requested) != 0)
                                                     @foreach ($requested as $item)
-                                                        @if ($item->id = $element->id)
+                                                        @if ($item->resultid == $element->id)
                                                             <p class="label label-warning"><small>Requested - </small>{{ strtoupper($item->state) }}</p>
                                                         @else
                                                             <a class="label label-primary" href="{{ url('results/change/'.$element->id) }}">Request change</a>

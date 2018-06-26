@@ -20,7 +20,7 @@
                             </div>
                             <div class="content">
                                 <form role="form" method="POST" action="{{ url('admin/add-admin') }}">
-                					{{ csrf_field() }}
+                					        {{ csrf_field() }}
 
                                     <div class="row">
                                         <div class="col-md-4">
@@ -94,5 +94,5 @@
                                 </form>
                             </div>
                         </div>
-                    </div>       
+                    </div>
 @stop

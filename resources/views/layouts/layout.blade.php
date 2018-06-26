@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield ('title') </title>
+    <title>@yield('title') </title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -42,7 +42,7 @@
         <footer class="footer">
                 <div class="container-fluid">
                     <div class="copyright text-center">
-                        @if(Auth::check()) {{Auth::user()->email}} @endif &copy; <script>document.write(new Date().getFullYear())</script>, developed by EDU-HUB for <a href="#">Notre Dame Girls' SHS</a>
+                        @if(Auth::check()) {{Auth::user()->email}} @endif &copy; <script>document.write(new Date().getFullYear())</script>, developed by EDU-HUB for <a href="#">Insight Broadcasting College</a>
                     </div>
                 </div>
         </footer>

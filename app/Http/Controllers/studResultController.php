@@ -10,7 +10,7 @@ use App\Resultchange;
 
 class studResultController extends Controller
 {
-	public function __construct()
+    public function __construct()
     {
         $this->middleware('auth');
     }
@@ -18,9 +18,9 @@ class studResultController extends Controller
     public function showresult()
     {
         $setting = Setting::select('*')->latest()->get()->first();
-       // return $Setting;
+        // return $Setting;
 
-       $result = Results::select('*')
+        $result = Results::select('*')
             ->where('academicyear','=',$setting->acyear)
             ->where('term','=',$setting->term)
             ->where('studentid','=',Auth::user()->studentid)
@@ -30,7 +30,7 @@ class studResultController extends Controller
             ->where('studid', Auth::user()->studentid)
             ->get();
 
-             // dd($requested);
+        // dd($requested);
 
         return view ('student.results', compact('requested')) ->with ('result', $result);
     }

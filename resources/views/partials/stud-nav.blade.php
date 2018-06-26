@@ -43,6 +43,12 @@
                         <p>Results</p>
                     </a>
                 </li>
+                <li>
+                    <a href="{{url('course-register')}}">
+                        <i class="ti-archive"></i>
+                        <p>Course Registration</p>
+                    </a>
+                </li>
             </ul>
     	</div>
 </div>
