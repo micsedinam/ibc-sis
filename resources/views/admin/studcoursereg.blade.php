@@ -23,15 +23,26 @@
                     	{{-- <a href="{{url('admin/results')}}" class="btn btn-success"><i class="ti-angle-double-left"></i>Back</a> --}}
                         {{-- <a href="{{URL::to('resultdeleteAll')}}" class="btn btn-danger">Delete All</a> --}}
 	                    {{--<a href="{{URL::to('getImport')}}" class="btn btn-success">Import</a>--}}
-	                    <!-- <a href="{{URL::to('admin/subject-results')}}" class="btn btn-info">Subject Results</a> -->
+	                    {{--  <!-- <a href="{{URL::to('admin/subject-results')}}" class="btn btn-info">Subject Results</a> -->  --}}
                     </div> 
                     <div class="col-md-12">
                         <h6 class="box-title text-center">Sort By Semester - Level</h6>
-                        <form role="form" method="POST" action="{{ url('/mycourses') }}">
+                        <form role="form" method="POST" action="{{ url('admin/mycourses') }}">
                             {{ csrf_field() }}
 
                              <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
+                                    <div class="form-group {{ $errors->has('studentid') ? ' has-error' : '' }}">
+                                        <input type="text" class="form-control border-input" placeholder="Enter Student ID (e.gTCP18002)" name="studentid" value="{{ old('studentid') }}" required="">
+
+                                        @if ($errors->has('studentid'))
+                                            <span class="help-block">
+                                                    <strong>{{ $errors->first('studentid') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <select class="form-control"  name="semester" required="">
                                             @foreach($courses as $item)
@@ -40,7 +51,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <select class="form-control"  name="level" required="">
                                             @foreach($courses as $item)
@@ -50,7 +61,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class=" col-md-4 text-center">
+                                <div class=" col-md-3 text-center">
                                     <button type="submit" class="btn btn-info btn-fill btn-wd">Get Courses</button>
                                 </div>
                             </div>
@@ -88,11 +99,22 @@
 
 		                            </tbody>
                                 </table>
-                                <form role="form" method="POST" action="{{ url('/mycourse') }}">
+                                <form role="form" method="POST" action="{{ url('admin/mycourse') }}">
                                     {{ csrf_field() }}
 
                                      <div class="row">
-                                        <div class="col-md-4">
+                                         <div class="col-md-3">
+                                            <div class="form-group {{ $errors->has('studentid') ? ' has-error' : '' }}">
+                                                <input type="hidden" class="form-control border-input" placeholder="Enter Student ID (e.gTCP18002)" name="studentid" value="{{ $mystudid }}" required="">
+
+                                                @if ($errors->has('studentid'))
+                                                    <span class="help-block">
+                                                            <strong>{{ $errors->first('studentid') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
                                             <div class="form-group {{ $errors->has('semester') ? ' has-error' : '' }}">
                                                 <input type="hidden" class="form-control border-input" name="semester" value="{{ $mysemester }}" required="">
 
@@ -103,7 +125,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="form-group {{ $errors->has('level') ? ' has-error' : '' }}">
                                                 <input type="hidden" class="form-control border-input" name="level" value="{{ $mylevel }}" required="">
 

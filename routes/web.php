@@ -77,7 +77,11 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('grade-report', 'gradeReportController@subresults');
 	Route::post('report', 'gradeReportController@subresults');
 	Route::resource('approve','approveController');
-	Route::resource('subjects-register', 'AdminCourseRegController');
+	Route::resource('/subjects-register', 'AdminCourseRegController');
+	Route::get('/subjects-register', 'AdminCourseRegController@courselist');
+	Route::post('/mycourses', 'AdminCourseRegController@courselist');
+	Route::post('/mycourse', 'AdminCourseRegController@store');
+	Route::get('/mycourse', 'AdminCourseRegController@store');
 });
 
 

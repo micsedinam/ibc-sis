@@ -3,6 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\courseRegister;
+use App\Course;
+use Illuminate\Support\Facades\Input;
+use Excel;
+use DB;
+use Auth;
+use App\Setting;
+use Carbon\Carbon;
 
 class AdminCourseRegController extends Controller
 {
@@ -34,7 +42,37 @@ class AdminCourseRegController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $dt = Carbon::now();
+        $bt = Carbon::now()->addYear();
+        // set some things
+        $now = substr($dt->year, 0, 4);
+        //dd($now);
+
+        $next = substr($bt->year, 0, 4);
+        //dd($next);
+
+        $year = $now.'/'.$next;
+
+        //dd($year);
+
+        //dd($request->all());
+        $reg = new courseRegister();
+
+        $reg->studentid = $request['studentid'];
+        $reg->academicyear= $year;
+        $reg->semester = $request['semester'];
+        $reg->level = $request['level'];
+
+        //dd($reg);
+
+        if($reg->save()){
+            flash('You Have Successfully Registered Your Courses')->success();
+        }else{
+            flash('Your Registeration Has Failed')->error();
+        }
+
+        return redirect()->back();
     }
 
     /**
@@ -87,7 +125,7 @@ class AdminCourseRegController extends Controller
        //dd($request->all());
         $mysemester = $request['semester'];
         $mylevel = $request['level'];
-        $mystudid = $request['level'];
+        $mystudid = $request['studentid'];
 
        // dd($myacademic, $myterm, $mysubject);
 
@@ -112,11 +150,12 @@ class AdminCourseRegController extends Controller
             ->groupBy('academicyear')
             ->get();*/
 
-        return view('student.stureg') 
+        return view('admin.studcoursereg') 
                 ->with('course', $course)
                 ->with('courses', $courses)
                 ->with('mysemester', $mysemester)
                 ->with('mylevel', $mylevel)
+                ->with('mystudid', $mystudid)
         ;
     }
 }
