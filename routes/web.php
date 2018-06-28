@@ -77,6 +77,7 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('grade-report', 'gradeReportController@subresults');
 	Route::post('report', 'gradeReportController@subresults');
 	Route::resource('approve','approveController');
+	Route::resource('subjects-register', 'AdminCourseRegController');
 });
 
 
@@ -136,6 +137,10 @@ Route::get('/adminlogin', function () {
 Route::get('subjects', function () {
     return view('admin.register-electives');
 })->middleware('auth:admin');
+
+// Route::get('subject-register', function () {
+//     return view('admin.studcoursereg');
+// })->middleware('auth:admin');
 /*Route::get('fees', function () {
     return view('admin.fees');
 });*/
@@ -173,5 +178,5 @@ Route::resource('/course-register', 'courseRegController');
 Route::get('/course-register', 'courseRegController@courselist');
 Route::post('/mycourses', 'courseRegController@courselist');
 Route::post('/mycourse', 'courseRegController@store');
-
+Route::get('registered', 'courseRegController@showregcourses');
 Auth::routes();

@@ -5,11 +5,11 @@
 @endsection
 
 @section('title')
-    Student | Register Courses 
+    Admin | Register Courses 
 @endsection
 
 @section('sidebar')
-    @include('partials.stud-nav')
+    @include('partials.side-nav')
 @stop
 
 @section('content') 

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 use Excel;
 use DB;
 use Auth;
+use App\Setting;
 use Carbon\Carbon;
 
 class courseRegController extends Controller
@@ -157,5 +158,25 @@ class courseRegController extends Controller
                 ->with('mysemester', $mysemester)
                 ->with('mylevel', $mylevel)
         ;
+    }
+
+    public function showregcourses()
+    {
+        $setting = Setting::select('*')->latest()->get()->first();
+
+        $show = courseRegister::select('*')
+            ->where('studentid','=',Auth::user()->studentid)
+            ->where('semester','=',$setting->semester)
+            ->where('level','=',$setting->level)
+            ->where('academicyear','=',$setting->academicyear)
+            ->get()
+        ;
+        // $requested = Resultchange::select('*')
+        //     ->where('studid', Auth::user()->studentid)
+        //     ->get();
+
+        // dd($requested);
+
+        return view ('student.regcourses') ->with ('show', $show);
     }
 }
