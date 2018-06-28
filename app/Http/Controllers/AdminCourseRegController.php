@@ -81,4 +81,42 @@ class AdminCourseRegController extends Controller
     {
         //
     }
+
+    public function courselist(Request $request)
+    {
+       //dd($request->all());
+        $mysemester = $request['semester'];
+        $mylevel = $request['level'];
+        $mystudid = $request['level'];
+
+       // dd($myacademic, $myterm, $mysubject);
+
+        $course = Course::select('id', 'c_name', 'c_code', 'credit_hrs', 'semester', 'level')
+                            ->where('semester', '=', $mysemester)
+                            ->where('level', '=', $mylevel)
+                            ->get();
+       //dd($results);                 
+        $courses = Course::select('id', 'c_name', 'c_code', 'credit_hrs', 'semester', 'level')
+                            ->get();
+       //dd($results);                        
+
+        /*$subject = Results::select('subject_title')
+            ->groupBy('subject_title')
+            ->get();
+
+        $term = Results::select('term')
+            ->groupBy('term')
+            ->get();
+
+        $academic = Results::select('academicyear')
+            ->groupBy('academicyear')
+            ->get();*/
+
+        return view('student.stureg') 
+                ->with('course', $course)
+                ->with('courses', $courses)
+                ->with('mysemester', $mysemester)
+                ->with('mylevel', $mylevel)
+        ;
+    }
 }
